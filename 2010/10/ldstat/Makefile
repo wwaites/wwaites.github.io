@@ -1,4 +1,5 @@
 all: ldstat.pdf ldstat.html ldstat.txt
+	ln -s ldstat.html index.html
 
 %.pdf: %.ps
 	ps2pdf $< $@

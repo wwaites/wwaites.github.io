@@ -18,4 +18,4 @@ all: ldstat.pdf ldstat.html ldstat.txt
 	hevea -text $<
 
 clean:
-	rm -f ldstat.pdf ldstat.html ldstat.txt
+	rm -f ldstat.pdf ldstat.html ldstat.txt *.aux *.bbl *.blg

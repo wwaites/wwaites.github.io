@@ -5,10 +5,10 @@
                              ==============
                          wwaites@tardis.ed.ac.uk
                         ========================
-           School of Informatics, University of Edinburgh (1)
-          ===================================================
-                     Open Knowledge Foundation (2) 
-                    ===============================
+             School of Informatics, University of Edinburgh
+            ===============================================
+                       Open Knowledge Foundation 
+                      ===========================
                            October 31st 2010
                            =================
    
@@ -190,7 +190,7 @@ can thus be done in a meaningful way.
 added, however predictable it might be, is to consider graphs with all
 possible redundancy eliminated. This question was first considered in
 [10] where Meier proposed applying rules negatively.
-  Algorithm 1  Meier’s Algorithm (3) 
+  Algorithm 1  Meier’s Algorithm (1) 
 <<def reduce(graph, rules):
       for triple in graph:
           graph.remove(triple)
@@ -204,7 +204,7 @@ possible redundancy eliminated. This question was first considered in
   The problem was further considered by Polleres et al. in [11] and
 given the name MINI-RDF. The  formulation builds on Meier’s work and
 asks how  difficult it is to find an irreducible graph given a set of
-rules and a set of constraints (4). Constraints are simply rules that
+rules and a set of constraints (2). Constraints are simply rules that
 specify that a certain amount of redundancy must be left in the graph
 when a reduction has been completed. It turns out that the problem is
 not tractable in general.
@@ -314,7 +314,7 @@ aren’t written this  way and it doesn’t make so much sense to map
 rules from their native representation to this vocabulary simply in
 order to indicate their use.
   We therefore propose a lightweight vocabulary [14] for Graph
-Normalisation, gn, as exemplified below (5), 
+Normalisation, gn, as exemplified below (3), 
   Example 4  Graph Normalisation Vocabulary
 <<eg:dataset a void:Dataset ;
     void:statItem [ 
@@ -371,7 +371,7 @@ optimisation to be had, especially for large datasets that experience
 incremental change.
   Starting with a minimisation of the previous version, G_i^R−, and a
 pair of graphs I and D representing triples to be inserted or
-deleted (6) such that G_i+1 = G_i − D + I, we can construct G_i+1^R−
+deleted (4) such that G_i+1 = G_i − D + I, we can construct G_i+1^R−
 by first calculating, G_i^R− − D since if they aren’t in G_i+1
 they won’t be in its minimisation. This intermediate  graph is a
 possibly non-minimal subgraph of G_i+1. Because the order of the triples
@@ -400,32 +400,27 @@ References
   
  
  [1]  K. Alexander, R. Cyganiak, M. Hausenblas, and J Zhao. Vocabulary
-   of interlinked datasets. http://vocab.deri.ie/void (7), May 2010.
+   of interlinked datasets, May 2010.
  
  [2]  T. Berners-Lee. Notation 3: a readable language for data on the
-   web. http://www.w3.org/DesignIssues/Notation3.html (8), 1998-2006.
+   web, 1998-2006.
  
- [3]  C. Bizer, A. Jentzsch, and R. Cyganiak. State of the lod cloud.
-   http://www4.wiwiss.fu-berlin.de/lodcloud/state/ (9), October 2010.
+ [3]  C. Bizer, A. Jentzsch, and R. Cyganiak. State of the lod cloud,
+   October 2010.
  
  [4]  H. Boley, G. Hallmark, M. Kifer, A. Paschke, A. Polleres, and
-   D. Reynolds. RIF core dialect.
-   http://www.w3.org/TR/2010/REC-rif-core-20100622/ (10), May 2010.
+   D. Reynolds. RIF core dialect, May 2010.
  
- [5]  H. Boley and M Kifer. RIF basic logic dialect.
-   http://www.w3.org/TR/2010/PR-rif-bld-20100511/ (11), May 2010.
+ [5]  H. Boley and M Kifer. RIF basic logic dialect, May 2010.
  
- [6]  R. Cyganiak and A. Jentsch. The linking open data cloud diagram.
-   http://richard.cyganiak.de/2007/10/lod/ (12), September 2010.
+ [6]  R. Cyganiak and A. Jentsch. The linking open data cloud diagram,
+   September 2010.
  
- [7]  P. Hayes. RDF semantics.
-   http://www.w3.org/TR/2004/REC-rdf-mt-20040210/ (13), February 2004.
+ [7]  P. Hayes. RDF semantics, February 2004.
  
- [8]  I Herman. Unique URIs for semantic web entailment regimes.
-   http://www.w3.org/ns/entailment/ (14), 2010.
+ [8]  I Herman. Unique URIs for semantic web entailment regimes, 2010.
  
- [9]  H. Knublauch. Spin modelling vocabulary.
-   http://www.spinrdf.org/spin.html (15), October 2009.
+ [9]  H. Knublauch. Spin modelling vocabulary, October 2009.
  
  [10]  M. Meier. Towards rule-based minimization of rdf graphs under
    constraints. In Diego Calvanese and Georg Lausen, editors, Web
@@ -433,70 +428,39 @@ References
    Science, pages 89–103. Springer Berlin / Heidelberg, 2008.
  
  [11]  R. Pichler, A. Polleres, S. Skritek, and S Woltran. Minimising
-   RDF graphs under rules and constraints revisited.
-   http://polleres.net/AMW10/rdfmin-full.pdf (16), 2010.
+   RDF graphs under rules and constraints revisited, 2010.
  
  [12]  A. Polleres. From sparql to rules (and back). In WWW ’07:
    Proceedings of the 16th international conference on World Wide Web,
    pages 787–796, New York, NY, USA, 2007. ACM.
  
- [13]  W. Waites. RDF graph minimisation experiment.
-   http://river.styx.org/ww/2010/10/graphmin/index (17), October 2010.
+ [13]  W. Waites. RDF graph minimisation experiment, October 2010.
  
- [14]  W. Waites. Vocabulary for RDF graph normalisation.
-   http://river.styx.org/graphnorm (18), October 2010.
+ [14]  W. Waites. Vocabulary for RDF graph normalisation, October 2010.
       
 -----------------------------------------------------------------------
   
-   This document was translated from LaTeX by HeVeA (19).
+   This document was translated from LaTeX by HeVeA (5).
 -----------------------------------
   
   
- (1) http://www.inf.ed.ac.uk/
- 
- (2) http://okfn.org/
- 
- (3)  Meier didn’t explicitly state the use of backwards  chaining but
+ (1)  Meier didn’t explicitly state the use of backwards  chaining but
    simply said to check if a given triple was possible to infer from the
    remaining triples under the given rules. The formulation given here
    comes from an actual implementation by the author of the present
    paper [13]. 
  
- (4)  They also considered the problem of rule reduction in addition to
+ (2)  They also considered the problem of rule reduction in addition to
    graph reduction, the general case of the simplifications to the rules
    given in the second example above. 
  
- (5)  Recent work on the voiD vocabulary tends to deprecate the
+ (3)  Recent work on the voiD vocabulary tends to deprecate the
    void:statItem predicate and the use of the SCOVO  vocabulary for
    expressing statistics. In our view this mechanism should be retained
    or replaced with something similar to support the expression of
    statistical provenance. 
  
- (6)  Assuming blank nodes are handled via some sort of  skolemisation
+ (4)  Assuming blank nodes are handled via some sort of  skolemisation
    mechanism. 
  
- (7) http://vocab.deri.ie/void
- 
- (8) http://www.w3.org/DesignIssues/Notation3.html
- 
- (9) http://www4.wiwiss.fu-berlin.de/lodcloud/state/
- 
- (10) http://www.w3.org/TR/2010/REC-rif-core-20100622/
- 
- (11) http://www.w3.org/TR/2010/PR-rif-bld-20100511/
- 
- (12) http://richard.cyganiak.de/2007/10/lod/
- 
- (13) http://www.w3.org/TR/2004/REC-rdf-mt-20040210/
- 
- (14) http://www.w3.org/ns/entailment/
- 
- (15) http://www.spinrdf.org/spin.html
- 
- (16) http://polleres.net/AMW10/rdfmin-full.pdf
- 
- (17) http://river.styx.org/ww/2010/10/graphmin/index
- 
- (18) http://river.styx.org/graphnorm
- 
- (19) http://hevea.inria.fr/index.html
+ (5) http://hevea.inria.fr/index.html

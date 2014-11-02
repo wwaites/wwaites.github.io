@@ -5,7 +5,7 @@
 \usepackage{fmtcount}
 \usepackage{tikz}
 \usepackage[europeanresistors]{circuitikz}
-\usetikzlibrary{shapes}
+\usetikzlibrary{shapes,arrows}
 \usepackage{mapdefs}
 \usepackage{xmission}
 \definecolor{hubsblue}{RGB}{2,72,142}
@@ -63,7 +63,10 @@
     \node at (5.5, -0.5) {%
       \includegraphics[width=1.05\paperwidth]{Cview.jpg}%
     };%
-    \node at (10,3) {\Large \color{hubsblue} Arnisdale};
+    \node (arnisdale) at (10,-2) {\Large \color{hubsblue} Arnisdale};
+    \node (corran) at (9,0) {\Large \color{hubsblue} Corran};
+    \draw[arrows=-triangle 45, color=hubsblue] (arnisdale) to (6.75,-2.75);
+    \draw[arrows=-triangle 45, color=hubsblue] (corran) to (5,0.75);
   \end{tikzpicture}
 \end{frame}
 \begin{frame}
@@ -132,7 +135,8 @@
         from Eigg.
       \item Later, \alert{Applecross} to the north joins in$\ldots$\\
         $\ldots$ and \alert{Locheil}\\
-        $\ldots$ and northern \alert{Mull}
+        $\ldots$ and northern \alert{Mull}\\
+        $\ldots$ and \alert{Sleat}
       \item Farther afield \alert{Laggan}, \alert{Lothian} and
         others$\ldots$
     \end{itemize}
@@ -148,7 +152,7 @@
         \emph{very} important
       \item Aversion to dynamic routing\\
         $\ldots$ but we \alert{want} redundant paths\\
-        $\ldots$ more important for remote places
+        $\ldots$ more important for remote places -- \textsc{mttr}
       \item Vendor firmware is limited
       \item OpenWRT too high a barrier
       \item ``serious'' routers too expensive\\
@@ -261,7 +265,7 @@
     \item Telemedicine starts to be practiced
   \end{itemize}
 \end{frame}
-\begin{frame}{$\leq$ Layer 7}
+\begin{frame}{Layer $\leq$ 7}
   \begin{columns}
     \column{0.5\textwidth}
     \includegraphics[width=\textwidth]{creagan-dearga-mast.jpg}\\
@@ -285,7 +289,7 @@
   \end{columns}
 \end{frame}
 \begin{frame}
-  \frametitle{$\geq$ Layer 8}
+  \frametitle{Layer $\geq$ 8}
   \begin{columns}
     \column{0.6\textwidth}
     \begin{itemize}
@@ -303,7 +307,7 @@
       \item Education -- not vendor courses, not ``enterprise''
         courses, but ``West Highland (Network) Engineering''
       \item \textbf{\color{hubsblue} Summer School Next Year --
-        Volunteers?}
+        Volunteers to visit \& teach?}
     \end{itemize}
     \column{0.4\textwidth}
     \hspace{-2em}\includegraphics[width=1.1\textwidth]{portree-3d.png}\\

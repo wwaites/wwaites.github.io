@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.5-0.9999.3 (TeX Live 2013/Debian) (format=xelatex 2014.7.31)  2 NOV 2014 17:24
+This is XeTeX, Version 3.1415926-2.5-0.9999.3 (TeX Live 2013/Debian) (format=xelatex 2014.7.31)  2 NOV 2014 18:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -944,7 +944,11 @@ File: pgflibraryshapes.multipart.code.tex 2010/01/07 v2.10 (rcs-revision 1.2)
 \pgfnodepartsevenbox=\box74
 \pgfnodepartsixbox=\box75
 \pgfnodepartfivebox=\box76
-))) (./mapdefs.sty
+)))
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryarrow
+s.code.tex
+File: tikzlibraryarrows.code.tex 2008/01/09 v2.10 (rcs-revision 1.1)
+) (./mapdefs.sty
 Package: mapdefs 
 ) (./xmission.sty
 Package: xmission 
@@ -1217,13 +1221,13 @@ File: hubs-logo.eps Graphic file (type eps)
 ]
 File: starting.jpg Graphic file (type QTm)
  <use  "starting.jpg" >
-Overfull \hbox (18.43729pt too wide) in paragraph at lines 89--89
+Overfull \hbox (18.43729pt too wide) in paragraph at lines 92--92
  [] 
  []
 
 File: stick.jpg Graphic file (type QTm)
 <use  "stick.jpg" >
-Overfull \hbox (18.43729pt too wide) in paragraph at lines 89--89
+Overfull \hbox (18.43729pt too wide) in paragraph at lines 92--92
  [][] 
  []
 
@@ -1242,7 +1246,7 @@ Missing character: There is no = in font nullfont!
 Missing character: There is no . in font nullfont!
 Missing character: There is no 6 in font nullfont!
 
-Overfull \vbox (0.55441pt too high) detected at line 102
+Overfull \vbox (0.55441pt too high) detected at line 105
  []
 
 File: school_of_informatics.pdf Graphic file (type QTm)
@@ -1291,7 +1295,7 @@ File: hubs-logo.eps Graphic file (type eps)
 ]
 File: west-coast-detail.eps Graphic file (type eps)
  <west-coast-detail.eps>
-Overfull \vbox (8.50285pt too high) detected at line 212
+Overfull \vbox (8.50285pt too high) detected at line 216
  []
 
 File: school_of_informatics.pdf Graphic file (type QTm)
@@ -1309,12 +1313,12 @@ File: eushield-fullcolour.pdf Graphic file (type QTm)
  <use  "eushield-fullcolour.pdf" >
 File: smo-pms-blue.eps Graphic file (type eps)
  <smo-pms-blue.eps>
-Invalid UTF-8 byte or sequence at line 246 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 246 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 246 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 246 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 246 replaced by U+FFFD.
-Invalid UTF-8 byte or sequence at line 246 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 250 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 250 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 250 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 250 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 250 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 250 replaced by U+FFFD.
 File: stir-logo-colour.eps Graphic file (type eps)
 
 <stir-logo-colour.eps>
@@ -1334,7 +1338,7 @@ File: hubs-logo.eps Graphic file (type eps)
 ]
 File: hubs-nov2014.eps Graphic file (type eps)
  <hubs-nov2014.eps>
-Overfull \vbox (3.15567pt too high) detected at line 251
+Overfull \vbox (3.15567pt too high) detected at line 255
  []
 
 File: school_of_informatics.pdf Graphic file (type QTm)
@@ -1355,7 +1359,7 @@ File: hubs-logo.eps Graphic file (type eps)
 File: creagan-dearga-mast.jpg Graphic file (type QTm)
 
 <use  "creagan-dearga-mast.jpg" >
-Overfull \vbox (5.69518pt too high) detected at line 286
+Overfull \vbox (5.69518pt too high) detected at line 290
  []
 
 File: school_of_informatics.pdf Graphic file (type QTm)
@@ -1372,7 +1376,7 @@ File: HIE-NGA-Deployment-2013-10-25.pdf Graphic file (type QTm)
 File: ros.png Graphic file (type QTm)
 
 <use  "ros.png" >
-Overfull \vbox (2.54323pt too high) detected at line 313
+Overfull \vbox (2.54323pt too high) detected at line 317
  []
 
 File: school_of_informatics.pdf Graphic file (type QTm)
@@ -1384,12 +1388,12 @@ File: hubs-logo.eps Graphic file (type eps)
 File: tommy-diversity.jpg Graphic file (type QTm)
 
 <use  "tommy-diversity.jpg" >
-Overfull \hbox (12.29214pt too wide) in paragraph at lines 343--343
+Overfull \hbox (12.29214pt too wide) in paragraph at lines 347--347
 []  
  []
 
 
-Overfull \vbox (3.42131pt too high) detected at line 343
+Overfull \vbox (3.42131pt too high) detected at line 347
  []
 
 File: school_of_informatics.pdf Graphic file (type QTm)
@@ -1416,18 +1420,18 @@ File: hubs-logo.eps Graphic file (type eps)
 \tf@snm=\write8
 \openout8 = `ripe69.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 357.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 357.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 361.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 361.
  (./ripe69.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 357.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 357.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 357.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 361.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 361.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 361.
  ) 
 Here is how much of TeX's memory you used:
- 28259 strings out of 493918
- 581253 string characters out of 6150563
- 744987 words of memory out of 5000000
- 30985 multiletter control sequences out of 15000+600000
+ 28289 strings out of 493918
+ 582056 string characters out of 6150563
+ 745427 words of memory out of 5000000
+ 31012 multiletter control sequences out of 15000+600000
  86769 words of font info for 83 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
  50i,14n,56p,930b,960s stack positions out of 5000i,500n,10000p,200000b,80000s

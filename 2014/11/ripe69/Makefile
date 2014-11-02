@@ -13,5 +13,6 @@ loss.dat: loss.py
 
 clean:
 	rm -f ${TARGET}.pdf ${TARGET}.out ${TARGET}.aux ${TARGET}.nav ${TARGET}.snm ${TARGET}.toc
+	rm -f ${TARGET}.log
 	rm loss.eps loss.dat
 	rm -f *~

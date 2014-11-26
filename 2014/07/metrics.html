@@ -1,45 +1,176 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8"> 
-    <title>Notes on Metric Tensors</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap -->
-    <link href="../../css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <style>
-      body {
-        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-      }
-    </style>
-    <link href="../../css/bootstrap-responsive.css" rel="stylesheet">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Notes on Metric Tensors</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="Notes on Metric Tensors"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2014-11-26T00:40+0000"/>
+<meta name="author" content="William Waites"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<link href="css/org.css" rel="stylesheet">
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
 
-  </head>
-  <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-	<div class="container">
-          <a class="brand" href="#">Notes on Metric Tensors</a>
-          <ul class="nav pull-right">
-            <li class="active"><a href="../../">Home</a></li>
-	  </ul>
-	</div>
-      </div>
-    </div>
-    <div class="container">
-      <div class="row">
-	<div class="span1"></div>
-	<div class="span7">
-	  <p><em>These are some notes starting after 
-	      <a href="https://www.wiki.ed.ac.uk/display/RBM/Session+5%3A+Differential+Geometry+III+and+Classical+Hamiltonian+mechanics+II">Nicolas Behr’s physics talk</a>
-	      at the School of Informatics on Tuesday 8th july 2014. It is very
-	      hand-wavy but hopefully might give a useful insight into metric
-	      tensors.</em></p>
-	  
-	  <p>Afterwards, I asked what the difference between an outer product and a
-	    tensor product is, and wrote on the board something that looked like
-	    high-school linear algebra</p>
-	  
-	  <script type="math/tex; mode=display">% <![CDATA[
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js">
+/**
+ *
+ * @source: http://orgmode.org/mathjax/MathJax.js
+ *
+ * @licstart  The following is the entire license notice for the
+ *  JavaScript code in http://orgmode.org/mathjax/MathJax.js.
+ *
+ * Copyright (C) 2012-2013  MathJax
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * @licend  The above is the entire license notice
+ * for the JavaScript code in http://orgmode.org/mathjax/MathJax.js.
+ *
+ */
+
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code below.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code below is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code below.
+*/
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
+</head>
+<body>
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">Notes on Metric Tensors</h1>
+
+<p>These are some notes starting after <a href="https://www.wiki.ed.ac.uk/display/RBM/Session+5:+Differential+Geometry+III+and+Classical+Hamiltonian+mechanics+II">Nicolas Behr’s physics talk</a> at the
+School of Informatics on Tuesday 8th july 2014. It is very hand-wavy
+but hopefully might give a useful insight into metric tensors
+</p>
+<p>          
+Afterwards, I asked what the difference between an outer product and a
+tensor product is, and wrote on the board something that
+looked like high-school linear algebra
+</p>
+          
+
+\begin{equation}
 \left( \begin{array}{c}
   1 \\
   2 \end{array} \right)
@@ -51,202 +182,219 @@
   3 & 4 \\
   6 & 8
 \end{array} \right)
- %]]></script>
-	  
-	  <p>or writing down the same thing in a slightly better way,</p>
-	  
-	  <script type="math/tex; mode=display">
-	    \vec{u} \otimes \vec{v} = u_a v^b = w_a^b
-	  </script>
-	  
-	  <p>which Nicolas corrected to include the basis vectors, but basically
-	    agreed an outer product like this, which is just all the different
-	    ways we can multiply the components (in the forward direction) is
-	    basically equivalent to the tensor product as long as we can keep
-	    track of which elements go where.</p>
-	  
-	  <script type="math/tex; mode=display">
-	    \vec{u} \cdot \vec{v} = \sum_a u_a v^a = \sum_a w_a^a = Tr(w)
-	  </script>
-	  
-	  <p>As usual if we follow Einstein’s summation convention, we should
-	    stop writing the big sigma because we quickly end up with too many of
-	    them. But for the time being we’ll keep them to make that obvious.</p>
-	  
-	  <p>The indices are written a bit randomly. Why should they be up or down?
-	    The answer here is that for the dot product it doesn’t matter. The
-	    trace of $w$ is invariant under (linear) coordinate transformations so
-	    getting confused about which way the rows and columns go doesn’t make
-	    a difference.</p>
-	  
-	  <p>Obviously it gets harder and harder to write down as the rank goes up
-	    – I have no idea how to write down a rank-4 tensor in matrix form
-	    which is what you’d get doing the outer product of that with itself.</p>
-	  
-	  <p>So then an inner product is what you get when you contract an outer
-	    product where “contract” means taking the trace (for rank 2, it would
-	    be something analogous but harder to visualise for higher rank).</p>
-	  
-	  <p>With elementary linear algebra we also have a cross product, which is
-	    where this stuff gets much harder to write down with rank &gt; 2. But it
-	    seems natural that we should be able to generalise the idea of cross
-	    products to these things. It turns out that we need a new symbol to
-	    help us do this, a permutation symbol named after Levi-Civita (who was
-	    a mathematician that wrote one of the main early works in this area,
-	    the somewhat starkly titled “The Absolute Differential Calculus”).</p>
-	  
-	  <p>Anyways, this symbol $\epsilon_{ijkl…}$ is 1 if the indices are an
-	    even permutation of (1,2,3,4…), -1 if it is odd, and zero if any
-	    indices are repeated. With this thing,</p>
-	  
-	  <script type="math/tex; mode=display">
-	    \vec{u} \times \vec{v} = \sum_j \sum_k \epsilon_{ijk} u^j v^k
-	  </script>
-	  
-	  <p>You can check that this works directly for the simple cases of, say,
-	    three dimensional vectors in euclidean space that we are all familiar
-	    with, and can just prove by induction that it works in higher
-	    dimensions.</p>
-	  
-	  <p>So far all of this is just a different way of writing down linear
-	    algebra. Things get a bit hairy when we don’t have a linear basis. If
-	    we have spherical coordinates, trying to do dot or cross products by
-	    multiplying r’s and thetas together without paying attention clearly
-	    won’t work. We need a thing to tell us how to do that.</p>
-	  
-	  <p>The important quantity that we want to preserve when we do these things
-	    is distance. The length of a vector, which we get by using dot
-	    products, should be the same no matter what coordinate system we use.
-	    The thing that does this, that tells us how to multiply vectors
-	    together in such a way that lengths are preserved, how much of each
-	    coordinate to put into the result, is the metric tensor. It’s called
-	    “metric” for just this reason.</p>
-	  
-	  <p>We know how to compute lengths in euclidean spaces, we know how to
-	    (locally) transform from euclidean space to some sort of curvy space,
-	    so we can work backwards. We can start by writing down our dot product
-	    as</p>
-	  
-	  <script type="math/tex; mode=display">
-	    \vec{u} \cdot \vec{v} = \sum_i \sum_j \delta_{ij} u^i v^j
-	  </script>
-	  
-	  <p>Nothing has really changed here, 
-	    the delta is just our normal
-	    Kronecker delta that is 1 if
-	    \(i = j\)
-	    and 0 otherwise. But what if it
-	    wasn’t? We know more about our metric tensor now. We know it fits in
-	    the same place as the delta.
-	    So let’s go ahead and write down
-	    something similar, where everything is expressed in some other
-	    curvilinear coordinate system</p>
-	  
-	  <script type="math/tex; mode=display">
-	    \vec{n} \cdot \vec{m} = \sum_i\sum_j g_{ij}n^im^j
-	  </script>
-	  
-	  <p>we want that they are the “same” vectors just represented with
-	    different coordinates, so we can write,</p>
-	  
-	  <script type="math/tex; mode=display">% <![CDATA[
+\end{equation}
 
+<p>          
+or writing down the same thing in a slightly better way,
+</p>
+          
+
+\begin{equation}
+\vec{u} \otimes \vec{v} = u_a v^b = w_a^b
+\end{equation}
+
+<p>          
+which Nicolas corrected to include the basis vectors, but basically
+agreed an outer product like this, which is just all the different
+ways we can multiply the components (in the forward direction) is
+basically equivalent to the tensor product as long as we can keep
+track of which elements go where.
+</p>
+          
+
+\begin{equation}
+\vec{u} \cdot \vec{v} = \sum_a u_a v^a = \sum_a w_a^a = Tr(w)
+\end{equation}
+
+<p>          
+As usual if we follow Einstein’s summation convention, we should stop
+writing the big sigma because we quickly end up with too many of
+them. But for the time being we’ll keep them to make that obvious.
+</p>
+<p>          
+The indices are written a bit randomly. Why should they be up or down?
+The answer here is that for the dot product it doesn’t matter. The
+trace of \(w\) is invariant under (linear) coordinate transformations so
+getting confused about which way the rows and columns go doesn’t make
+a difference.
+</p>
+<p>          
+Obviously it gets harder and harder to write down as the rank goes up
+– I have no idea how to write down a rank-4 tensor in matrix form
+which is what you’d get doing the outer product of that with
+itself.
+</p>
+<p>          
+So then an inner product is what you get when you contract an outer
+product where “contract” means taking the trace (for rank 2, it would
+be something analogous but harder to visualise for higher rank).
+</p>
+<p>          
+With elementary linear algebra we also have a cross product, which is
+where this stuff gets much harder to write down with rank &gt; 2. But it
+seems natural that we should be able to generalise the idea of cross
+products to these things. It turns out that we need a new symbol to
+help us do this, a permutation symbol named after Levi-Civita (who was
+a mathematician that wrote one of the main early works in this area,
+the somewhat starkly titled “The Absolute Differential Calculus”).&lt;/p&gt;
+</p>
+<p>          
+Anyways, this symbol \(\epsilon_{ijkl…}\) is 1 if the indices are an
+even permutation of \((1,2,3,4\ldots)\), -1 if it is odd, and zero if
+any indices are repeated. With this thing,
+</p>
+          
+
+\begin{equation}
+\vec{u} \times \vec{v} = \sum_j \sum_k \epsilon_{ijk} u^j v^k
+\end{equation}
+
+<p>          
+You can check that this works directly for the simple cases of, say,
+three dimensional vectors in euclidean space that we are all familiar
+with, and can just prove by induction that it works in higher
+dimensions.
+</p>
+<p>          
+So far all of this is just a different way of writing down linear
+algebra. Things get a bit hairy when we don’t have a linear basis. If
+we have spherical coordinates, trying to do dot or cross products by
+multiplying r’s and thetas together without paying attention clearly
+won’t work. We need a thing to tell us how to do that.
+</p>
+<p>          
+The important quantity that we want to preserve when we do these
+things is distance. The length of a vector, which we get by using dot
+products, should be the same no matter what coordinate system we use.
+The thing that does this, that tells us how to multiply vectors
+together in such a way that lengths are preserved, how much of each
+coordinate to put into the result, is the metric tensor. It’s called
+“metric” for just this reason.
+</p>
+<p>          
+We know how to compute lengths in euclidean spaces, we know how to
+(locally) transform from euclidean space to some sort of curvy space,
+so we can work backwards. We can start by writing down our dot product
+as
+</p>
+          
+
+\begin{equation}
+\vec{u} \cdot \vec{v} = \sum_i \sum_j \delta_{ij} u^i v^j
+\end{equation}
+
+<p>          
+Nothing has really changed here, the delta is just our normal
+Kronecker delta that is 1 if \(i = j\) and 0 otherwise. But what if it
+wasn’t? We know more about our metric tensor now. We know it fits in
+the same place as the delta.  So let’s go ahead and write down
+something similar, where everything is expressed in some other
+curvilinear coordinate system
+</p>
+          
+
+\begin{equation}
+\vec{n} \cdot \vec{m} = \sum_i\sum_j g_{ij}n^im^j
+\end{equation}
+
+<p>          
+we want that they are the “same” vectors just represented with
+different coordinates, so we can write,
+</p>
+          
+
+\begin{equation}
 \begin{aligned}
   n^i &= \sum_j \frac{\partial y^i}{\partial x^j} u^j\\
   m^i &= \sum_j \frac{\partial y^i}{\partial x^j} v^j
 \end{aligned}
- %]]></script>
-	  
-	  <p>where $x^i$ are the old rectilinear coordinates and $y^i$ are
-	    the new curvilinear ones. We want to make sure that</p>
-	  
-	  <script type="math/tex; mode=display">
-	    \vec{u} \cdot \vec{v} = \vec{n} \cdot \vec{m}
-	  </script>
-	  
-	  <p>so,</p>
-	  
-	  <script type="math/tex; mode=display">
-	    \sum_i\sum_j g_{ij}n^im^j =
-	    \sum_i\sum_j\sum_k\sum_l g_{ij}
-	    \frac{\partial y^i}{\partial x^k}u^k
-	    \frac{\partial y^j}{\partial x^l}v^l
-	    = \sum_i\sum_j \delta_{ij} u^iv^j
-	  </script>
-	  
-	  <p>this is a bit of a beast with lots of sums, but rearranging isn’t that
-	    hard, and we get that</p>
-	  
-	  <script type="math/tex; mode=display">
-	    g_{ij} = \sum_a\sum_b 
-	    \frac{\partial x^a}{\partial y^i}
-	    \frac{\partial x^b}{\partial y^j}
-	    \delta_{ab}
-	  </script>
-	  
-	  <p>In a similar way we do cross products,</p>
-	  
-	  <script type="math/tex; mode=display">
-	    \vec{n} \times \vec{m} =
-	    \sum_j \sum_k \sum_l g_{ij} \epsilon_{jlk} n^k m^l
-	  </script>
-	  
-	  <p>The effect of applying a metric tensor this way (“applying” means
-	    summing over its second index) is a kind of a distance preserving
-	    coordinate transformation.</p>
-	  
-	  <p>Whether we put the indices on the top or the bottom depends on whether
-	    coordinate transformations happens in a covariant (top) or
-	    contravariant (bottom) way. Normally vectors are covariant things. If
-	    you make the vector bigger in some direction, you would expect its
-	    representation in another coordinate system also to get bigger.</p>
-	  
-	  <p>The metric tensor is the opposite. It’s supposed to make lengths (dot
-	    products) stay the same no matter how you transform. So if you go to a
-	    coordinate system that stretches in the $x$ direction, assigns a
-	    bigger number to that component, the metric tensor has to compensate
-	    and assign a smaller number to the bit of the length sum that comes
-	    from the corresponding components in the transformed vector. So we
-	    call it contravariant.</p>
-	  
-	  <p>A historical note is that this mathematics came to physics with
-	    general relativity. Special relativity can be worked out with high
-	    school algebra, but in general relativity, there was a distance
-	    quantity that needed to be conserved under acceleration and there was
-	    no way to make it work with euclidean coordinates. So the idea was
-	    that it could be worked out with curvilinear coordinates and that this
-	    metric tensor arranges so that the distances stay the same.</p>
-	  
-	  <p>It’s also hopefully clear why it’s good to use the summation
-	    convention and drop all of the annoying sigmas.</p>
-	</div>
-      </div>
-      <hr />
-      <div class="row">
-	<div class="pull-right">
-	  <em>Last modified: Sun Oct 11:20:21 UTC 2014 by ww</em>
-	</div>
-      </div>
-    </div>
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        extensions: ["tex2jax.js"],
-        jax: ["input/TeX", "output/HTML-CSS"],
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-          displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-          processEscapes: true
-        },
-        "HTML-CSS": { availableFonts: ["TeX"] }
-      });
-    </script>
-    <script type="text/javascript"
-	        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-    </script>
-  </body>
-</html>
-<!-- Local Variables: -->
-<!-- time-stamp-pattern: "-40/<em>Last modified:[ \t]+%3a %3b %02H:%02M:%02S %Z %:y by %u</em>" -->
-<!-- time-stamp-time-zone: "UTC" -->
-<!-- End: -->
+\end{equation}
 
+<p>          
+where \(x^i\) are the old rectilinear coordinates and \(y^i\) are
+the new curvilinear ones. We want to make sure that
+</p>
+          
+
+\begin{equation}
+\vec{u} \cdot \vec{v} = \vec{n} \cdot \vec{m}
+\end{equation}
+
+<p>          
+so,
+</p>
+          
+
+\begin{equation}
+\sum_i\sum_j g_{ij}n^im^j =
+\sum_i\sum_j\sum_k\sum_l g_{ij}
+\frac{\partial y^i}{\partial x^k}u^k
+\frac{\partial y^j}{\partial x^l}v^l
+= \sum_i\sum_j \delta_{ij} u^iv^j
+\end{equation}
+
+<p>          
+this is a bit of a beast with lots of sums, but rearranging isn’t that
+hard, and we get that
+</p>
+          
+
+\begin{equation}
+g_{ij} = \sum_a\sum_b 
+\frac{\partial x^a}{\partial y^i}
+\frac{\partial x^b}{\partial y^j}
+\delta_{ab}
+\end{equation}
+
+<p>          
+In a similar way we do cross products,
+</p>
+          
+
+\begin{equation}
+\vec{n} \times \vec{m} =
+\sum_j \sum_k \sum_l g_{ij} \epsilon_{jlk} n^k m^l
+\end{equation}
+
+<p>          
+The effect of applying a metric tensor this way (“applying” means
+summing over its second index) is a kind of a distance preserving
+coordinate transformation.
+</p>
+<p>          
+Whether we put the indices on the top or the bottom depends on whether
+coordinate transformations happens in a covariant (top) or
+contravariant (bottom) way. Normally vectors are covariant things. If
+you make the vector bigger in some direction, you would expect its
+representation in another coordinate system also to get bigger.
+</p>
+<p>          
+The metric tensor is the opposite. It’s supposed to make lengths (dot
+products) stay the same no matter how you transform. So if you go to a
+coordinate system that stretches in the \(x\) direction, assigns a
+bigger number to that component, the metric tensor has to compensate
+and assign a smaller number to the bit of the length sum that comes
+from the corresponding components in the transformed vector. So we
+call it contravariant.
+</p>
+<p>          
+A historical note is that this mathematics came to physics with
+general relativity. Special relativity can be worked out with high
+school algebra, but in general relativity, there was a distance
+quantity that needed to be conserved under acceleration and there was
+no way to make it work with euclidean coordinates. So the idea was
+that it could be worked out with curvilinear coordinates and that this
+metric tensor arranges so that the distances stay the same.
+</p>
+<p>
+It’s also hopefully clear why it’s good to use the summation
+convention and drop all of the annoying sigmas.
+</p>
+
+</div>
+
+<div id="postamble">
+<p class="creator">Generated by <a href="http://orgmode.org">Org</a> version 7.9.3f with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 24 by <a href="mailto:tardis.ed.ac.uk!wwaites">tardis.ed.ac.uk!wwaites</a> at 2014-11-26T00:40+0000</p>
+</div>
+</body>
+</html>

@@ -1,1 +1,519 @@
-ldstat.html
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.09">
+<style type="text/css">
+.li-itemize{margin:1ex 0ex;}
+.li-enumerate{margin:1ex 0ex;}
+.dd-description{margin:0ex 0ex 1ex 4ex;}
+.dt-description{margin:0ex;}
+.toc{list-style:none;}
+.footnotetext{margin:0ex; padding:0ex;}
+div.footnotetext P{margin:0px; text-indent:1em;}
+.thefootnotes{text-align:left;margin:0ex;}
+.dt-thefootnotes{margin:0em;}
+.dd-thefootnotes{margin:0em 0em 0em 2em;}
+.footnoterule{margin:1em auto 1em 0px;width:50%;}
+.caption{padding-left:2ex; padding-right:2ex; margin-left:auto; margin-right:auto}
+.title{margin:2ex auto;text-align:center}
+.titlemain{margin:1ex 2ex 2ex 1ex;}
+.titlerest{margin:0ex 2ex;}
+.center{text-align:center;margin-left:auto;margin-right:auto;}
+.flushleft{text-align:left;margin-left:0ex;margin-right:auto;}
+.flushright{text-align:right;margin-left:auto;margin-right:0ex;}
+div table{margin-left:inherit;margin-right:inherit;margin-bottom:2px;margin-top:2px}
+td table{margin:auto;}
+table{border-collapse:collapse;}
+td{padding:0;}
+.cellpadding0 tr td{padding:0;}
+.cellpadding1 tr td{padding:1px;}
+pre{text-align:left;margin-left:0ex;margin-right:auto;}
+blockquote{margin-left:4ex;margin-right:4ex;text-align:left;}
+td p{margin:0px;}
+.boxed{border:1px solid black}
+.textboxed{border:1px solid black}
+.vbar{border:none;width:2px;background-color:black;}
+.hbar{border:none;height:2px;width:100%;background-color:black;}
+.hfill{border:none;height:1px;width:200%;background-color:black;}
+.vdisplay{border-collapse:separate;border-spacing:2px;width:auto; empty-cells:show; border:2px solid red;}
+.vdcell{white-space:nowrap;padding:0px; border:2px solid green;}
+.display{border-collapse:separate;border-spacing:2px;width:auto; border:none;}
+.dcell{white-space:nowrap;padding:0px; border:none;}
+.dcenter{margin:0ex auto;}
+.vdcenter{border:solid #FF8000 2px; margin:0ex auto;}
+.minipage{text-align:left; margin-left:0em; margin-right:auto;}
+.marginpar{border:solid thin black; width:20%; text-align:left;}
+.marginparleft{float:left; margin-left:0ex; margin-right:1ex;}
+.marginparright{float:right; margin-left:1ex; margin-right:0ex;}
+.theorem{text-align:left;margin:1ex auto 1ex 0ex;}
+.part{margin:2ex auto;text-align:center}
+</style>
+<link rel="stylesheet" type="text/css" href="../../../css/hevea.css">
+<link rel="stylesheet" type="text/css" href="../../../css/org.css">
+<title>ldstat</title>
+</head>
+<body >
+<!--HEVEA command line is: /usr/bin/hevea ldstat.tex -->
+<!--CUT STYLE article--><!--CUT DEF section 1 --><p>
+
+
+    <div id="content">
+  
+
+
+
+</p><table class="title"><tr><td style="padding:1ex"><h1 class="titlemain">On the Provenance of Linked Data Statistics</h1><h3 class="titlerest">William Waites<br>
+ <span style="font-family:monospace">wwaites@tardis.ed.ac.uk</span><br>
+ School of Informatics, University of Edinburgh<br>
+ Open Knowledge Foundation
+</h3><h3 class="titlerest">October 31st 2010</h3></td></tr>
+</table><div class="center">
+
+    <p><em>alternate formats: 
+        <a href="ldstat.txt">txt</a>,
+        <a href="ldstat.pdf">pdf</a>
+    </em></p>
+  </div><blockquote class="abstract"><span style="font-weight:bold">Abstract: </span>
+As the amount of linked data published on the web grows,
+attempts are being made to describe and measure it. However
+even basic statistics about a graph, such as its size, 
+are difficult to express in a uniform and predictable
+way. In order to be able to sensibly interpret a statistic
+it is necessary to know how it was calculate. In this paper
+we survey the nature of the problem and outline a strategy
+for addressing it.
+</blockquote>
+<!--TOC section id="sec1" Background and Motivation-->
+<h2 id="sec1" class="section">1  Background and Motivation</h2><!--SEC END --><p>For the past several years datasets of Linked Open Data on
+the web have been catalogued and made into a diagram 
+[<a href="#LODC10">6</a>] to illustrate their proliferation and 
+interconnectedness. More recently some statistics about
+these datasets have been calculated [<a href="#LODS10">3</a>]. 
+Amongst the published statistics are, for example the number
+of triples in various graphs or unions of graphs across
+a particular domain of interest. Some more sophisticated
+statistics are also given in absolute terms, e.g. the
+absolute number of links outgoing from a particular
+dataset.</p><p>In conjunction with this work, a vocabulary [<a href="#VOID10">1</a>]
+has been developed for describing RDF datasets. This
+vocabulary contains predicates for describing common
+statistics, for example the number of triples or number
+of distinct subjects, as well as some more generic
+facilities for annotating a dataset description with
+other types of statistical information.</p><p>Inasmuch as these statistics help to understand some
+of the properties of these data at a coarse grained
+level and get a rough idea of their dimensions they are
+quite useful and indeed valuable contributions. However
+as always we must ask what they mean. As, for example,
+<span style="font-family:monospace">void:triples</span> denotes the size of the dataset,
+intuitively we might think that this gives some idea
+of the amount of information contained in it. But,
+most datasets carry a greater or lesser amount of
+redundant information. It might be included to make
+querying easier or to make extracts more easily
+readable by a human. In some sense it could be 
+argued that when counting triples that this redundant
+information should be left out. It is also easily
+demonstrated that an unlimited amount of redundant
+triples can easily be added to any dataset without
+really changing the information content. Clearly
+the meaning of <span style="font-family:monospace">void:triples</span> is somewhat of
+a moving target.</p><p>The problem is exacerbated when more sophisticated
+statistics are calculated. In the example of the 
+outgoing links from one dataset to another, one might
+want to normalise their count by dividing by the 
+size of the dataset – to arrive at a measure that 
+might be called “out-link density”. Perhaps such
+a measure would tell us something about the character
+of the dataset itself, independent of its size. But
+because this measure is built on the basic notion 
+of the size of the dataset we need to do some work
+before arriving at a meaningful value for it.</p><blockquote class="quote">
+<span style="font-weight:bold">Notation Conventions:</span> Throughout the following,
+where RDF data is explicitly represented, the Notation 
+3 [<a href="#N3">2</a>] syntax is used and declarations for common
+namespaces such as <em>rdf</em>, <em>rdfs</em>, <em>owl</em>,
+<em>foaf</em>, <em>dct</em> are ommitted. In addition RDF
+terms and statements are represented in a fixed-with
+font.
+</blockquote>
+<!--TOC section id="sec2" Redundancy in Graphs-->
+<h2 id="sec2" class="section">2  Redundancy in Graphs</h2><!--SEC END --><p>A well known trivial example of adding redundancy to
+graphs uses blank nodes. Blank nodes are to be read as
+existential variables [<a href="#RDFS04">7</a>]. </p><div class="theorem"><span style="font-weight:bold">Example 1</span>  <em><span style="font-weight:bold">Production Rules</span></em><em>
+</em></div><p>If we start with a graph containing one statement,
+<br>
+<span style="font-family:monospace">
+</span></p><div class="center"><span style="font-family:monospace">
+bob a foaf:Person.
+</span></div><p><span style="font-family:monospace">
+</span>
+<br>
+we can then add a statement with a blank node,
+<br>
+<span style="font-family:monospace">
+</span></p><div class="center"><span style="font-family:monospace">
+_:b1 a foaf:Person.
+</span></div><p><span style="font-family:monospace">
+</span>
+<br>
+which simply says “there exists someone that is a
+<span style="font-family:monospace">foaf:Person</span>”. This information was already 
+contained in the original graph and really adds nothing
+new. And we can add as many more blank nodes,
+<span style="font-family:monospace">_:b2, _:b3, ..., _:bn</span>. What does this do to
+a count of the size of the graph?</p><p>Such a production rule that generated these redundant
+triples would called <em>unsafe</em> [<a href="#RIF10">4</a>] but it is
+quite possible to add a finite amount redundant
+information with safe rules as well. The question of
+how much redundant information has been added remains.</p><div class="theorem"><span style="font-weight:bold">Example 2</span>  <em><span style="font-weight:bold">Graph Reduction</span></em><em>
+</em></div><p>As more realistic example, elaborated with the opposite
+strategy of removing redundancy, consider the following
+graph, and description logic fragment:
+<br>
+<span style="font-family:monospace">
+</span></p><div class="center"><span style="font-family:monospace">
+</span><table border=1  style="border-spacing:0;" class="cellpadding1"><tr><td style="text-align:left;border:solid 1px;white-space:nowrap" ><span style="font-family:monospace"> </span><span style="font-style:italic">s</span><sub>1</sub></td><td style="text-align:left;border:solid 1px;white-space:nowrap" ><span style="font-family:monospace">bob a foaf:Person. </span></td></tr>
+<tr><td style="text-align:left;border:solid 1px;white-space:nowrap" ><span style="font-family:monospace"> </span><span style="font-style:italic">s</span><sub>2</sub></td><td style="text-align:left;border:solid 1px;white-space:nowrap" ><span style="font-family:monospace">bob foaf:knows alice. </span></td></tr>
+<tr><td style="text-align:left;border:solid 1px;white-space:nowrap" ><span style="font-family:monospace"> </span><span style="font-style:italic">s</span><sub>3</sub></td><td style="text-align:left;border:solid 1px;white-space:nowrap" ><span style="font-family:monospace">alice a foaf:Person. </span></td></tr>
+<tr><td style="text-align:left;border:solid 1px;white-space:nowrap" ><span style="font-family:monospace"> </span><span style="font-style:italic">s</span><sub>4</sub></td><td style="text-align:left;border:solid 1px;white-space:nowrap" ><span style="font-family:monospace">alice foaf:knows bob. </span></td></tr>
+<tr><td style="text-align:left;border:solid 1px;white-space:nowrap" ><span style="font-family:monospace"> </span><span style="font-style:italic">s</span><sub>5</sub></td><td style="text-align:left;border:solid 1px;white-space:nowrap" ><span style="font-family:monospace">foaf:knows rdfs:domain foaf:Person.</span></td></tr>
+<tr><td style="text-align:left;border:solid 1px;white-space:nowrap" ><span style="font-family:monospace"> </span><span style="font-style:italic">s</span><sub>6</sub></td><td style="text-align:left;border:solid 1px;white-space:nowrap" ><span style="font-family:monospace">foaf:knows rdfs:range foaf:Person.
+</span></td></tr>
+</table><span style="font-family:monospace">
+</span></div><p><span style="font-family:monospace">
+</span>
+<br>
+</p><p>If this is accompanied by the RDF semantic rules
+[<a href="#RDFS04">7</a>] (Section 4) concerning domains and 
+ranges, namely,
+<br>
+</p><div class="center">
+<table border=1  style="border-spacing:0;" class="cellpadding1"><tr><td style="text-align:left;border:solid 1px;white-space:nowrap" > <span style="font-style:italic">r</span><sub>1</sub></td><td style="text-align:left;border:solid 1px;white-space:nowrap" >{<span style="font-family:monospace">?s ?p ?o. ?p rdfs:domain ?A</span>} </td></tr>
+<tr><td style="text-align:left;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:left;border:solid 1px;white-space:nowrap" >     <span style="font-family:monospace">=&gt;</span> {<span style="font-family:monospace">?s a ?A</span> }. </td></tr>
+<tr><td style="text-align:left;border:solid 1px;white-space:nowrap" > <span style="font-style:italic">r</span><sub>2</sub></td><td style="text-align:left;border:solid 1px;white-space:nowrap" >{<span style="font-family:monospace">?s ?p ?o. ?p rdfs:range ?B</span>} </td></tr>
+<tr><td style="text-align:left;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:left;border:solid 1px;white-space:nowrap" >     <span style="font-family:monospace">=&gt;</span> {<span style="font-family:monospace">?o a ?B</span> }.
+</td></tr>
+</table>
+</div><p>
+<br>
+we can immediately see that, under the given rules, statements
+<span style="font-style:italic">s</span><sub>1</sub> and <span style="font-style:italic">s</span><sub>3</sub> are redundant as they can be derived from the
+statements involving the predicate <span style="font-family:monospace">foaf:knows</span> and
+knowledge about its domain and range.</p><p>We need to make some distinction here between the graph under
+consideration,  <span style="font-style:italic">s</span><sub>1</sub>, ..., <span style="font-style:italic">s</span><sub>4</sub>  and the extra information
+we have drawn upon,  <span style="font-style:italic">s</span><sub>5</sub>, <span style="font-style:italic">s</span><sub>6</sub> . In general the latter will
+come from a source external to the former, being referenced
+as a vocabulary. It can also easily be seen that the description
+logic fragment could just as well be expressed as a rule 
+itself,
+<br>
+</p><div class="center">
+<table border=1  style="border-spacing:0;" class="cellpadding1"><tr><td style="text-align:left;border:solid 1px;white-space:nowrap" > <span style="font-style:italic">r</span><sub>3</sub></td><td style="text-align:left;border:solid 1px;white-space:nowrap" >{<span style="font-family:monospace">?a foaf:knows ?b</span>} </td></tr>
+<tr><td style="text-align:left;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:left;border:solid 1px;white-space:nowrap" >     <span style="font-family:monospace">=&gt;</span> {<span style="font-family:monospace">?a a foaf:Person.</span> </td></tr>
+<tr><td style="text-align:left;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:left;border:solid 1px;white-space:nowrap" >          <span style="font-family:monospace"> ?b a foaf:Person.</span>}
+</td></tr>
+</table>
+</div><p>
+<br>
+</p><p>We can further see that if we have <span style="font-style:italic">r</span><sub>3</sub>, we don’t need <span style="font-style:italic">r</span><sub>1</sub> 
+or <span style="font-style:italic">r</span><sub>2</sub>.</p><p>So far we have shown that for,
+<br>
+</p><div class="center">
+<table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" > <span style="font-style:italic">G</span></td><td style="text-align:left;white-space:nowrap" >= { <span style="font-style:italic">s</span><sub>1</sub>, ..., <span style="font-style:italic">s</span><sub>4</sub> } ∪ { <span style="font-style:italic">s</span><sub>5</sub>, <span style="font-style:italic">s</span><sub>6</sub> } </td></tr>
+<tr><td style="text-align:left;white-space:nowrap" > <span style="color:red"><span style="font-style:italic">R</span></span></td><td style="text-align:left;white-space:nowrap" >= { <span style="font-style:italic">r</span><sub>1</sub>, <span style="font-style:italic">r</span><sub>2</sub> } </td></tr>
+<tr><td style="text-align:left;white-space:nowrap" > <span style="font-style:italic">G</span><sup>′</sup></td><td style="text-align:left;white-space:nowrap" >= { <span style="font-style:italic">s</span><sub>2</sub>, <span style="font-style:italic">s</span><sub>4</sub> } </td></tr>
+<tr><td style="text-align:left;white-space:nowrap" > <span style="color:red"><span style="font-style:italic">R</span></span><sup>′</sup></td><td style="text-align:left;white-space:nowrap" >= { <span style="font-style:italic">r</span><sub>3</sub> }
+</td></tr>
+</table>
+</div><p>
+<br>
+the <span style="font-style:italic">G</span> and <span style="font-style:italic">G</span><sup>′</sup> under <span style="color:red"><span style="font-style:italic">R</span></span> and <span style="color:red"><span style="font-style:italic">R</span></span><sup>′</sup>
+respectively are in some sense equivalent, though it remains to state
+explicitly what is meant by that. By inspection we can see that <span style="font-style:italic">G</span><sup>′</sup>
+is half the size of <span style="font-style:italic">G</span>, in terms of number of statements, so we might say
+that 50% of <span style="font-style:italic">G</span> was redundant. It is not immediately clear if
+<span style="color:red"><span style="font-style:italic">R</span></span> and <span style="color:red"><span style="font-style:italic">R</span></span><sup>′</sup> are the same or different
+sizes.</p>
+<!--TOC section id="sec3" Rules and Redundancy-->
+<h2 id="sec3" class="section">3  Rules and Redundancy</h2><!--SEC END --><p>The examples above rely on rules or what are often called
+entailment regimes. Some common ones are defined in a 
+placeholder vocabulary by the W3C [<a href="#SWER10">8</a>]. Rules may
+be applied in the usual way, as in the first example, to
+produce statements and this is known as calculating the
+closure of the graph.</p><div class="theorem"><span style="font-weight:bold">Definition 1</span>  <em>
+The </em>closure<em> of a graph, </em><span style="font-style:italic">G</span><em> with respect to a set of
+rules, </em><span style="color:red"><span style="font-style:italic">R</span></span><em> is the set of all statements produced by
+applying </em><span style="color:red"><span style="font-style:italic">R</span></span><em> to </em><span style="font-style:italic">G</span><em> until exhaustion, in other words
+adding all statements that it is possible to infer given the
+data and the rules. We will denote this operation as 
+</em><span style="font-style:italic">G</span><sup><span style="color:red"><span style="font-style:italic">R</span></span>+</sup><em>.
+</em></div><p>Calculating <span style="font-style:italic">G</span><sup><span style="color:red"><span style="font-style:italic">R</span></span>+</sup> is computationally expensive
+but tractable with safe rules. Note that the closure with
+respect to an empty ruleset is just the graph itself, or
+<span style="font-style:italic">G</span> = <span style="font-style:italic">G</span><sup>∅+</sup>.</p><div class="theorem"><span style="font-weight:bold">Definition 2</span>  <em>
+The </em>cardinality<em> of a graph, </em><span style="font-style:italic">G</span><em> is simply the number of
+triples it contains and is denoted </em>|<span style="font-style:italic">G</span>|<em>.
+</em></div><p>This is enough to provide a stable notion of the size of 
+the graph by adding in a predictable proportion of redundancy
+by specifying the entailment regime. Comparing the cardinality
+of two graphs side-by side can thus be done in a meaningful
+way.</p>
+<!--TOC section id="sec4" The Minimisation Problem-->
+<h2 id="sec4" class="section">4  The Minimisation Problem</h2><!--SEC END --><p>What might be better than considering graphs which have had
+redundancy added, however predictable it might be, is to
+consider graphs with all possible redundancy eliminated. This
+question was first considered in [<a href="#MEIER08">10</a>] where Meier
+proposed applying rules negatively.</p><div class="theorem"><span style="font-weight:bold">Algorithm 1</span>  <em><span style="font-weight:bold">Meier’s Algorithm</span></em><sup><a id="text1" href="#note1"><em>1</em></a></sup><em>
+<br>
+</em><pre class="verbatim"><em>def reduce(graph, rules):
+    for triple in graph:
+        graph.remove(triple)
+        if not backchain(graph, rules,
+                         goal=triple):
+            graph.add(triple)
+    return graph
+</em></pre><em><br>
+</em></div><p>The problem was further considered by Polleres et al. in
+[<a href="#MINI10">11</a>] and given the name <em>MINI-RDF</em>. The 
+formulation builds on Meier’s work and asks how 
+difficult it is to find an irreducible graph given a
+set of rules and a set of constraints<sup><a id="text2" href="#note2">2</a></sup>. Constraints are simply rules that specify that a
+certain amount of redundancy must be left in the graph
+when a reduction has been completed. It turns out that
+the problem is not tractable in general.</p><p>Whilst Meier’s algorithm can be completed in polynomial
+time, it will only find an irreducible graph that 
+entails the same closure of the original. It was 
+proven in [<a href="#MINI10">11</a>] that finding the <em>smallest</em>
+irreducible graph is in general also intractable.</p><div class="theorem"><span style="font-weight:bold">Definition 3</span>  <em>
+A </em>minimisation<em> of a graph, </em><span style="font-style:italic">G</span><em> with respect to
+a set of rules, </em><span style="color:red"><span style="font-style:italic">R</span></span><em> is the smallest possible
+graph that has the same closure with respect to 
+</em><span style="color:red"><span style="font-style:italic">R</span></span><em> as </em><span style="font-style:italic">G</span><em> and is written,
+</em><span style="font-style:italic">G</span><sup><span style="color:red"><span style="font-style:italic">R</span></span>−</sup><em>. </em><span style="font-style:italic">G</span><sup><span style="color:red"><span style="font-style:italic">R</span></span>−</sup><em> is a solution
+to </em><span style="font-style:italic">MINI</span>  <span style="font-style:italic">RDF</span>(<span style="font-style:italic">G</span>, <span style="color:red"><span style="font-style:italic">R</span></span>, ∅)<em>.
+</em></div><div class="theorem"><span style="font-weight:bold">Example 3</span>  <em>
+</em></div><p>
+It can be easily seen that <span style="font-style:italic">G</span><sup><span style="font-style:italic">R</span>−</sup> is not, in general,
+unique. For example, consider the following graph,
+<span style="font-style:italic">G</span> = { <span style="font-style:italic">s</span><sub>1</sub>, <span style="font-style:italic">s</span><sub>2</sub> } and rule, <span style="color:red"><span style="font-style:italic">R</span></span> = { <span style="font-style:italic">r</span><sub>1</sub> },
+<br>
+</p><div class="center">
+<table border=1  style="border-spacing:0;" class="cellpadding1"><tr><td style="text-align:left;border:solid 1px;white-space:nowrap" > <span style="font-style:italic">s</span><sub>1</sub></td><td style="text-align:left;border:solid 1px;white-space:nowrap" ><span style="font-family:monospace">a links_to b.</span> </td></tr>
+<tr><td style="text-align:left;border:solid 1px;white-space:nowrap" > <span style="font-style:italic">s</span><sub>2</sub></td><td style="text-align:left;border:solid 1px;white-space:nowrap" ><span style="font-family:monospace">b linked_from a.</span> </td></tr>
+<tr><td style="text-align:left;border:solid 1px;white-space:nowrap" > <span style="font-style:italic">r</span><sub>1</sub></td><td style="text-align:left;border:solid 1px;white-space:nowrap" >{<span style="font-family:monospace">?x links_to ?y</span>} </td></tr>
+<tr><td style="text-align:left;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:left;border:solid 1px;white-space:nowrap" >     <span style="font-family:monospace">&lt;=&gt;</span> {<span style="font-family:monospace">?y linked_from ?x</span>}
+</td></tr>
+</table>
+</div><p>
+<br>
+either of <span style="font-style:italic">s</span><sub>1</sub> or <span style="font-style:italic">s</span><sub>2</sub> could be deleted from <span style="font-style:italic">G</span> to obtain
+<span style="font-style:italic">G</span><sup><span style="color:red"><span style="font-style:italic">R</span></span>−</sup>. </p><p>Since finding <span style="font-style:italic">G</span><sup><span style="color:red"><span style="font-style:italic">R</span></span></sup> is in general intractable, a
+potentially fruitful avenue of future research is to consider
+the circumstances under which it can be solved in polynomial
+time. Obviously the trivial case, <span style="font-style:italic">G</span><sup>∅ −</sup> is 
+solvable. For some kinds of rules, such as those in the
+second example above, the minimisation will be unique. For
+a broader set of rules, such as those with loops as in the
+third example above, |<span style="font-style:italic">G</span><sup><span style="color:red"><span style="font-style:italic">R</span></span>−</sup>| will be unique.
+This last, the set of cardinality-preserving rules for
+which calculating the minimisation of a graph is tractable,
+is the broadest set of interest for the present purposes
+– rules in this class are practical to apply to remove as
+much redundancy as possible from the graph.</p>
+<!--TOC section id="sec5" Redundancy Revisited-->
+<h2 id="sec5" class="section">5  Redundancy Revisited</h2><!--SEC END --><p>We are now in a position to make some formal definitions of
+what we mean by redundancy in graphs.</p><div class="theorem"><span style="font-weight:bold">Definition 4</span>  <em>
+The </em>redundancy<em> contained in a graph, </em><span style="font-style:italic">G</span><em> with respect
+to a set of rules, </em><span style="color:red"><span style="font-style:italic">R</span></span><em> is given by
+</em>1 − |<span style="font-style:italic">G</span><sup><span style="color:red"><span style="font-style:italic">R</span></span>−</sup>|/|<span style="font-style:italic">G</span>|<em>.
+</em></div><p>The foregoing considerations give rise to four fundamental
+statistics about a graph, given a set of rules,</p><ul class="itemize"><li class="li-itemize">
+The cardinality of the graph as published.
+</li><li class="li-itemize">The cardinality of the closure of the graph under a given
+set of rules.
+</li><li class="li-itemize">The cardinality of a minimal graph under a given set of
+rules.
+</li><li class="li-itemize">The redundancy of the graph under a given set of rules.
+</li></ul><p>From these it is possible to build up more elaborate statistics
+in a predictable way. To take the “out-link density” example
+from the introduction, this might be expressed as,
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">D</span><sub><span style="font-style:italic">out</span></sub><sup>+</sup>(<span style="font-style:italic">G</span>) = </td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">|<span style="font-style:italic">G</span><sub><span style="font-style:italic">out</span></sub><sup><span style="color:red"><span style="font-style:italic">R</span></span>+</sup>|</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">|<span style="font-style:italic">G</span><sup><span style="color:red"><span style="font-style:italic">R</span></span>+</sup>|</td></tr>
+</table></td></tr>
+</table><p>
+or alternatively,
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">D</span><sub><span style="font-style:italic">out</span></sub><sup>−</sup>(<span style="font-style:italic">G</span>) = </td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">|<span style="font-style:italic">G</span><sub><span style="font-style:italic">out</span></sub><sup><span style="color:red"><span style="font-style:italic">R</span></span>−</sup>|</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">|<span style="font-style:italic">G</span><sup><span style="color:red"><span style="font-style:italic">R</span></span>−</sup>|</td></tr>
+</table></td></tr>
+</table><p>
+Where the numerator has been constructed by selecting triples 
+whose objects are resources in a different graph from the minimised
+graph. If the rules are as strong as possible, such a statistic
+might tell us something charactistic of the graph, if it is closer
+to 0 the graph contains mostly internal information as might be
+the case with large datasets such as DBpedia or OpenCyc. A
+<span style="font-family:monospace">void:Linkset</span> on the other hand might have a characteristic
+out-link density closer to 1 as most of its statements express
+the relationships between other datasets.</p>
+<!--TOC section id="sec6" Vocabulary Considerations-->
+<h2 id="sec6" class="section">6  Vocabulary Considerations</h2><!--SEC END --><p>The fact that the three of the fundamental statistics depend on the
+rules used means that in order to express them unambiguously we need
+also to mention the rules or entailment regimes. This is not a large
+burden but does mean that we need a vocabulary for it. Such a
+vocabulary would need to have predicates for including both Horn rules
+and description logics. As support for the Rule Interchange Format
+[<a href="#RIFBLD10">5</a>] becomes more common it will be necessary to 
+include rules expressed in this language as well.</p><p>The placeholder vocabulary for entailment regimes [<a href="#SWER10">8</a>]
+is a good starting point. The URIs defined there
+are useful as recognisable unique identifiers but as yet have no
+formal descriptions beyond pointers to the human readable 
+documentation – there is no automated way to discover which
+rules each regime implies.</p><p>The [<a href="#SPIN09">9</a>] vocabulary could be adapted for this but it
+relies heavily on modelling SPARQL CONSTRUCT queries. While it 
+has been shown [<a href="#SR07">12</a>] that there is a mapping from these
+types of queries to FOPL, most rulesets aren’t written this 
+way and it doesn’t make so much sense to map rules from their
+native representation to this vocabulary simply in order to
+indicate their use.</p><p>We therefore propose a lightweight vocabulary [<a href="#GN10">14</a>] for
+Graph Normalisation, <span style="font-family:monospace">gn</span>, as exemplified below<sup><a id="text3" href="#note3">3</a></sup>,
+<br>
+</p><div class="theorem"><span style="font-weight:bold">Example 4</span>  <em><span style="font-weight:bold">Graph Normalisation Vocabulary</span></em><pre class="verbatim"><em>eg:dataset a void:Dataset ;
+  void:statItem [ 
+    scovo:dimension eg:redundancy ;
+      rdf:value 0.3 ;
+      gn:normalisation [
+        a gn:MiniRDF ;
+          gn:rules [
+            a gn:RuleSet ;
+            gn:n3 &lt;.../rdfs-rules.n3&gt; ;
+            gn:dlogic owl:, foaf: ;
+            gn:rif &lt;.../rif-rules.rif&gt;
+          ]
+      ]
+  ].
+</em></pre></div><p>Additionally, <span style="font-family:monospace">gn:constraints</span> is defined for completeness
+to support specification of the <em>MINI-RDF</em> problem though in
+practice this would probably never be used.</p><p>In this way, to check or recreate this statistic one
+might procede from such a description as follows,</p><div class="theorem"><span style="font-weight:bold">Example 5</span>  <em><span style="font-weight:bold">Redundancy Calculation</span></em><em>
+</em></div><ol class="enumerate" type=1><li class="li-enumerate">
+Fetch the dataset in question, <span style="font-style:italic">G</span>.
+</li><li class="li-enumerate">Fetch Horn (N3, RIF) rules.
+</li><li class="li-enumerate">Fetch description logics, making sure to follow
+<span style="font-family:monospace">owl:imports</span>, collectively <span style="font-style:italic">D</span>.
+</li><li class="li-enumerate">Transform the description logics into their equivalent
+Horn rules.
+</li><li class="li-enumerate">Construct <span style="color:red"><span style="font-style:italic">R</span></span> as the set all the rules fetched.
+</li><li class="li-enumerate">Run Meier’s algorithm using <span style="font-style:italic">G</span> ∪ <span style="font-style:italic">D</span> as the graph for
+the backchaining step.
+</li><li class="li-enumerate">Compute 1 − |<span style="font-style:italic">G</span><sup><span style="color:red"><span style="font-style:italic">R</span></span>−</sup>|/|<span style="font-style:italic">G</span>|.
+</li></ol><p>This example of course assumes that the all rules used are
+tractable for <span style="font-style:italic">G</span><sup><span style="color:red"><span style="font-style:italic">R</span></span>−</sup> and cardinality preserving.</p><p>It should be noted that the current practice with respect to
+<span style="font-family:monospace">void:triples</span> is simply the above with an empty
+ruleset. In this way some amount of backwards compatibility
+with current practice is maintained.</p>
+<!--TOC section id="sec7" Optimising with Graph Diffs-->
+<h2 id="sec7" class="section">7  Optimising with Graph Diffs</h2><!--SEC END --><p>If finding a <span style="font-style:italic">G</span><sup><span style="color:red"><span style="font-style:italic">R</span></span>−</sup> is tractable, it is still a
+computationally expensive operation. If provenance information is
+kept for datasets such that given the previous version and the
+provenance metadata it is possible to reconstruct the current
+version there is a significant optimisation to be had, especially
+for large datasets that experience incremental change.</p><p>Starting with a minimisation of the previous version,
+<span style="font-style:italic">G</span><sub><span style="font-style:italic">i</span></sub><sup><span style="color:red"><span style="font-style:italic">R</span></span>−</sup>, and a pair of graphs <span style="font-style:italic">I</span> and <span style="font-style:italic">D</span>
+representing triples to be inserted or deleted<sup><a id="text4" href="#note4">4</a></sup> such that <span style="font-style:italic">G</span><sub><span style="font-style:italic">i</span>+1</sub> = <span style="font-style:italic">G</span><sub><span style="font-style:italic">i</span></sub> − <span style="font-style:italic">D</span> + <span style="font-style:italic">I</span>, we can construct
+<span style="font-style:italic">G</span><sub><span style="font-style:italic">i</span>+1</sub><sup><span style="color:red"><span style="font-style:italic">R</span></span>−</sup> by first calculating,
+<span style="font-style:italic">G</span><sub><span style="font-style:italic">i</span></sub><sup><span style="color:red"><span style="font-style:italic">R</span></span>−</sup> − <span style="font-style:italic">D</span> since if they aren’t in <span style="font-style:italic">G</span><sub><span style="font-style:italic">i</span>+1</sub>
+they won’t be in its minimisation. This intermediate 
+graph is a possibly non-minimal subgraph of <span style="font-style:italic">G</span><sub><span style="font-style:italic">i</span>+1</sub>.
+Because the order of the triples in <span style="font-family:monospace">minimise()</span>
+doesn’t matter we can now run it only testing the triples
+in <span style="font-style:italic">I</span>.</p>
+<!--TOC section id="sec8" Conclusion-->
+<h2 id="sec8" class="section">8  Conclusion</h2><!--SEC END --><p>We have reviewed the truism that in order to be able
+to sensibly interpret statistics one must know how they
+are calculated. Looking at how this applies to descriptions
+of RDF graphs we have seen that apparently simple statistics
+can be calculated in a number of ways. Thus the importance
+of provenance <em>of the statistics</em> has been highlighted.
+A proposal for how this provenance information might be
+expressed was put forward and some interesting areas for
+further theoretical research were noted.</p><!--TOC section id="sec9" References-->
+<h2 id="sec9" class="section">References</h2><!--SEC END --><dl class="thebibliography"><dt class="dt-thebibliography">
+<a id="VOID10">[1]</a></dt><dd class="dd-thebibliography">
+K. Alexander, R. Cyganiak, M. Hausenblas, and J Zhao.
+Vocabulary of interlinked datasets, May 2010.</dd><dt class="dt-thebibliography"><a id="N3">[2]</a></dt><dd class="dd-thebibliography">
+T. Berners-Lee.
+Notation 3: a readable language for data on the web, 1998-2006.</dd><dt class="dt-thebibliography"><a id="LODS10">[3]</a></dt><dd class="dd-thebibliography">
+C. Bizer, A. Jentzsch, and R. Cyganiak.
+State of the lod cloud, October 2010.</dd><dt class="dt-thebibliography"><a id="RIF10">[4]</a></dt><dd class="dd-thebibliography">
+H. Boley, G. Hallmark, M. Kifer, A. Paschke, A. Polleres, and D. Reynolds.
+RIF core dialect, May 2010.</dd><dt class="dt-thebibliography"><a id="RIFBLD10">[5]</a></dt><dd class="dd-thebibliography">
+H. Boley and M Kifer.
+RIF basic logic dialect, May 2010.</dd><dt class="dt-thebibliography"><a id="LODC10">[6]</a></dt><dd class="dd-thebibliography">
+R. Cyganiak and A. Jentsch.
+The linking open data cloud diagram, September 2010.</dd><dt class="dt-thebibliography"><a id="RDFS04">[7]</a></dt><dd class="dd-thebibliography">
+P. Hayes.
+RDF semantics, February 2004.</dd><dt class="dt-thebibliography"><a id="SWER10">[8]</a></dt><dd class="dd-thebibliography">
+I Herman.
+Unique URIs for semantic web entailment regimes, 2010.</dd><dt class="dt-thebibliography"><a id="SPIN09">[9]</a></dt><dd class="dd-thebibliography">
+H. Knublauch.
+Spin modelling vocabulary, October 2009.</dd><dt class="dt-thebibliography"><a id="MEIER08">[10]</a></dt><dd class="dd-thebibliography">
+M. Meier.
+Towards rule-based minimization of rdf graphs under constraints.
+In Diego Calvanese and Georg Lausen, editors, <em>Web Reasoning and
+Rule Systems</em>, volume 5341 of <em>Lecture Notes in Computer Science</em>, pages
+89–103. Springer Berlin / Heidelberg, 2008.</dd><dt class="dt-thebibliography"><a id="MINI10">[11]</a></dt><dd class="dd-thebibliography">
+R. Pichler, A. Polleres, S. Skritek, and S Woltran.
+Minimising RDF graphs under rules and constraints revisited, 2010.</dd><dt class="dt-thebibliography"><a id="SR07">[12]</a></dt><dd class="dd-thebibliography">
+A. Polleres.
+From sparql to rules (and back).
+In <em>WWW ’07: Proceedings of the 16th international conference on
+World Wide Web</em>, pages 787–796, New York, NY, USA, 2007. ACM.</dd><dt class="dt-thebibliography"><a id="GM10">[13]</a></dt><dd class="dd-thebibliography">
+W. Waites.
+RDF graph minimisation experiment, October 2010.</dd><dt class="dt-thebibliography"><a id="GN10">[14]</a></dt><dd class="dd-thebibliography">
+W. Waites.
+Vocabulary for RDF graph normalisation, October 2010.</dd></dl><p>
+
+
+
+    </div>
+  
+</p><!--BEGIN NOTES document-->
+<hr class="footnoterule"><dl class="thefootnotes"><dt class="dt-thefootnotes">
+<a id="note1" href="#text1">1</a></dt><dd class="dd-thefootnotes"><div class="footnotetext">
+Meier didn’t explicitly state the use of backwards 
+chaining but simply said to check if a given triple
+was possible to infer from the remaining triples
+under the given rules. The formulation given here
+comes from an actual implementation by the author
+of the present paper [<a href="#GM10">13</a>].
+</div>
+</dd><dt class="dt-thefootnotes"><a id="note2" href="#text2">2</a></dt><dd class="dd-thefootnotes"><div class="footnotetext">
+They also considered the problem of rule reduction
+in addition to graph reduction, the general case
+of the simplifications to the rules given in
+the second example above.
+</div>
+</dd><dt class="dt-thefootnotes"><a id="note3" href="#text3">3</a></dt><dd class="dd-thefootnotes"><div class="footnotetext">
+Recent work on the voiD vocabulary tends to deprecate the
+<span style="font-family:monospace">void:statItem</span> predicate and the use of the SCOVO 
+vocabulary for expressing statistics. In our view this
+mechanism should be retained or replaced with something
+similar to support the expression of statistical provenance.
+</div>
+</dd><dt class="dt-thefootnotes"><a id="note4" href="#text4">4</a></dt><dd class="dd-thefootnotes"><div class="footnotetext">
+Assuming blank nodes are handled via some sort of 
+skolemisation mechanism.
+</div>
+</dd></dl>
+<!--END NOTES-->
+<!--CUT END -->
+<!--HTMLFOOT-->
+<!--ENDHTML-->
+<!--FOOTER-->
+<hr style="height:2"><blockquote class="quote"><em>This document was translated from L<sup>A</sup>T<sub>E</sub>X by
+</em><a href="http://hevea.inria.fr/index.html"><em>H</em><em><span style="font-size:small"><sup>E</sup></span></em><em>V</em><em><span style="font-size:small"><sup>E</sup></span></em><em>A</em></a><em>.</em></blockquote></body>
+</html>

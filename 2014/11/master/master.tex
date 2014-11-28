@@ -1,0 +1,59 @@
+\documentclass{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{braket}
+\usepackage{literate}
+\usepackage[margin=2cm]{geometry}
+\providecommand{\alert}[1]{\textbf{#1}}
+
+\title{The Loch Ness Monster}
+%\author{William Waites}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\input{Master.lhs}
+\input{MasterEx.lhs}
+\section*{Notes on the method}
+\subsection*{Size of the matrices}
+The matrices must be bigger than the largest number of particles
+expected. Just how much bigger is an interesting question. Here, 10\%
+bigger was arbitrarily chosen, but a more rigorous error bound should
+be easily obtainable. This bound should hold regardless of the
+approximation method.
+
+\subsection*{Approximating exponentials}
+When working with floating point numbers, using a Taylor expansion to
+approximate a matrix exponential is known to be a bad idea. It is
+inefficient and numerically unstable. Using arbitrary precision
+numbers it is stable, but still inefficient. The method used here is
+as implemented in the \emph{expm} function with Pad\'{e} approximants
+and scaling and squaring, which is the ``standard'' method. It is
+still expensive, though, and where the task is to multiply a matrix
+exponential by a vector there are better ones -- Krylov iteration and
+Leja point iteration.
+
+\subsection*{Scaling to multiple reactions}
+The method implemented here, though it is not very elegant, scales
+immediately to any number of reactions -- the only added cost is in
+the initial computation of the Hamiltonian which consists only of
+adding and subtracting matrices and in any case is only done once.
+
+\subsection*{Scaling to multiple species}
+This is more difficult because it would involve three dimensional
+matrices, with an extra axis for species. Some work on the
+data-structures involved would be necessary, as they would in any case
+for more efficient calculation of the exponentials
+themselves. Performance would also degrade at least polynomially in
+the number of species.
+
+\subsection*{Parallelism}
+There are numerous places here where parallelism can be exploited. The
+methods for calculating the exponential could be made to run on
+multiple cores and to exploit GPU hardware. Because the solution is
+exact, time-steps can also be calculated independently on different
+computers in a cluster and the results collated.
+\end{document}

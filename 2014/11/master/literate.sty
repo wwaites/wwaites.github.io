@@ -1,0 +1,52 @@
+\ProvidesPackage{literate}[2014/10/25 WW]
+\RequirePackage{amssymb}
+\RequirePackage{listings}
+\RequirePackage{textcomp}
+\RequirePackage{xcolor}
+
+\definecolor{edblue}{RGB}{0,0,153}
+\definecolor{edviolet}{RGB}{125,0,99}
+\definecolor{firebrick}{RGB}{179,34,34}
+\definecolor{forestgreen}{RGB}{34,140,34}
+
+\newcommand{\note}[1]{\textbf{\color{red} #1}}
+
+\long\def\hide#1{}
+\lstloadlanguages{Haskell}
+\lstnewenvironment{code}
+  {\lstset{}%
+    \vspace{\baselineskip}%
+    \csname lst@SetFirstLabel\endcsname}
+  {\csname lst@SaveFirstLabel\endcsname%
+   \vspace{\baselineskip}}
+  \lstset{
+    language=Haskell,
+    basicstyle=\small\ttfamily,
+    identifierstyle=\color{edblue},
+    commentstyle=\itshape\color{firebrick},
+%    frame=LR,
+    frame=single,
+%    keywordstyle={\color{forestgreen}},
+    stringstyle=\color{forestgreen},
+    keepspaces=true,
+    flexiblecolumns=false,
+    basewidth={0.5em,0.45em},
+    xleftmargin=0em,
+    xrightmargin=0em,
+    literate=
+         {~=?}{{$\sim =$?}}4
+         {+}{{$+$}}1 {/}{{$/$}}1 {*}{{$*$}}1
+         {=}{{$=$}}1 {/=}{{$\neq$}}1
+         {>}{{$>$}}2 {<}{{$<$}}2 {\\}{{$\lambda$}}1
+         {\\\\}{{\char`\\\char`\\}}1
+         {->}{{$\rightarrow$}}2 {>=}{{$\geq$}}2 {<-}{{$\leftarrow$}}3
+         {<=}{{$\leq$}}2 {=>}{{$\Rightarrow$}}2 
+         {\ .}{{$\circ$}}2 {\ .\ }{{$\circ$}}2
+         {>>}{{>>}}2 {>>=}{{>>=}}2
+         {|}{{$\mid$}}1               
+         {<>}{{$\times$}}1
+         {<+>}{{$\oplus$}}2
+         {<->}{{$\ominus$}}2
+         {<*>}{{$\otimes$}}2
+         {<<<}{{$\lll$}}2
+  }

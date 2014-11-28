@@ -959,7 +959,9 @@ content: "*** "
 	z-index: -1000;
     }
 
-
+    pre.src {
+	background-color: #846454;
+    }
 } /* END OF @media all */
 
 

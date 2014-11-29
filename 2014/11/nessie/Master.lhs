@@ -22,7 +22,9 @@ and annihilation $a$ operators as,
 \begin{equation}
 H = \sum_{\tau \in T} r_\tau(a^{\dagger t_\tau} - a^{\dagger s_\tau})a^{s_\tau}
 \end{equation}
-where $T$ is our set of reactions.
+where $T$ is our set of reactions, and for each of them $r$ is the
+rate at which it happens, $t$ is the number of particles created and
+$s$ is the number destroyed.
 
 The solution of equation \ref{eq:master} is,
 \begin{equation}

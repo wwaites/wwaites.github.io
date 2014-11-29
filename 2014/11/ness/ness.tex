@@ -56,4 +56,12 @@ methods for calculating the exponential could be made to run on
 multiple cores and to exploit GPU hardware. Because the solution is
 exact, time-steps can also be calculated independently on different
 computers in a cluster and the results collated.
+
+\subsection*{Frequency Domain}
+There is, in this case mostly due to the initial conditions, the
+strong appearance of periodic behaviour. This suggests it might be
+profitable to make a fourier transform of the probability
+distribution. How does such a transform affect the operators? Can it
+be used to make a diagonal Hamiltonian in the frequency basis? If so,
+computing the exponential is much simpler.
 \end{document}

@@ -5,6 +5,7 @@
 \usepackage{graphicx}
 \usepackage{braket}
 \usepackage{literate}
+\usepackage[numbers,sort&compress,longnamesfirst]{natbib}
 \usepackage[margin=2cm]{geometry}
 \providecommand{\alert}[1]{\textbf{#1}}
 
@@ -15,8 +16,23 @@
 \begin{document}
 
 \maketitle
+
+This simulation of the Master Equation is based on the observation
+that the creation and annihilation operators, $a^{\dagger}$ and $a$
+are really matrices. It might help with understanding what is going on
+in Behr's Molecular Time Machine \citetext{priv.\ comm.}, though
+unlike that approach, here we sidestep the combinatoric complications
+and simply calculate the result directly.
+
+The direct technique only works without modification for a single
+species, but supports any number of reactions. It gets more expensive
+with large numbers of particles because computing the matrix
+exponential is $\mathcal{O}(n^3)$~\citep{moler_nineteen_2003} in the
+size of the matrix and we need an ever larger one for more particles.
+
 \input{Master.lhs}
 \input{MasterEx.lhs}
+
 \section*{Notes on the method}
 \subsection*{Size of the matrices}
 The matrices must be bigger than the largest number of particles
@@ -47,8 +63,7 @@ This is more difficult because it would involve three dimensional
 matrices, with an extra axis for species. Some work on the
 data-structures involved would be necessary, as they would in any case
 for more efficient calculation of the exponentials
-themselves. Performance would also degrade at least polynomially in
-the number of species.
+themselves.
 
 \subsection*{Parallelism}
 There are numerous places here where parallelism can be exploited. The
@@ -64,4 +79,9 @@ profitable to make a fourier transform of the probability
 distribution. How does such a transform affect the operators? Can it
 be used to make a diagonal Hamiltonian in the frequency basis? If so,
 computing the exponential is much simpler.
+
+\bibliographystyle{unsrt}
+\bibliography{literature}
+
 \end{document}
+

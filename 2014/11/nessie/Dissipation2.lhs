@@ -8,7 +8,7 @@ import Numeric.LinearAlgebra
 import qualified Numeric.LinearAlgebra.Data as LD
 \end{code}
 }
-\subsection*{Example: $\emptyset \rightarrow A, 2A \rightarrow 0$}
+\subsection*{Example: $\emptyset \rightarrow A, 2A \rightarrow \emptyset$}
 To try to get a handle on the necessary matrix sizes and the effect
 of truncation, consider a slightly more complicated system,
 \begin{equation}

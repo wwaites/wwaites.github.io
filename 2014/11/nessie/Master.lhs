@@ -127,10 +127,10 @@ reaction n t s r = scale r (ct <> as - cs <> as)
     as = annihilate n s
 \end{code}
 
-Now we can make a function to create Hamiltonians of size $n$ for a
-list of reaction specifications. Reaction specifications are of the
-form \lstinline{(t, s, r)} or in other words the parameters that we
-need to create an individual reaction.
+Now we can make a function to create Hamiltonians of size
+\lstinline{n} for a list of reaction specifications. Reaction
+specifications are of the form \lstinline{(t, s, r)} or in other words
+the parameters that we need to create an individual reaction.
 \begin{code}
 hamiltonian :: Int -> [(Int, Int, Double)] -> Matrix Double
 hamiltonian n rs = foldl1 (+) $ map(\(t, s, r) -> reaction n t s r) rs

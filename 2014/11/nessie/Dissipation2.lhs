@@ -66,5 +66,5 @@ This suggests diminishing returns with matrix size, at least for
 dissipative systems.
 
 % Local Variables:
-% compile-command: "ghc -O2 -Wall -Werror --make MasterEx.lhs"
+% compile-command: "ghc -O2 -Wall -Werror --make Dissipation2.lhs"
 % End:

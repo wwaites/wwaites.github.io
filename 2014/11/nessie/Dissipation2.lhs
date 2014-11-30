@@ -8,13 +8,13 @@ import Numeric.LinearAlgebra
 import qualified Numeric.LinearAlgebra.Data as LD
 \end{code}
 }
-\subsection*{Example: $\emptyset \rightarrow A, 2A \rightarrow \emptyset$}
+\subsection*{Example: $\emptyset \rightarrow A,\, 2A \rightarrow \emptyset$}
 To try to get a handle on the necessary matrix sizes and the effect
 of truncation, consider a slightly more complicated system,
 \begin{equation}
-  \begin{array}{c}
-  \emptyset \rightarrow A\\
-  2A \rightarrow \emptyset
+  \begin{array}{ccc}
+  \emptyset &\rightarrow& A\\
+  2A &\rightarrow& \emptyset
   \end{array}
 \end{equation}
 where it is fed with the same initial probability distribution as
@@ -47,7 +47,7 @@ entries in the difference which are simply zero,
 \includegraphics[width=0.5\textwidth]{dissipation2_0001.eps}
 \end{center}
 \caption{Probability distribution evolution for the $\emptyset
-\rightarrow A, 2A \rightarrow \emptyset$ reaction system for various
+\rightarrow A,\, 2A \rightarrow \emptyset$ reaction system for various
 matrix sizes. The purple line is for a matrix of size 301, the filled
 green circles are for 400, the red circles are 500 and the blue cross
 (and line) are 600.  The initial distribution is 25\% probability for

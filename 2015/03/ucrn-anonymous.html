@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
 <meta name="title" content="UCRN is Persistent and is not Anonymous"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2015-03-01T13:51+0000"/>
+<meta name="generated" content="2015-03-01T14:53+0000"/>
 <meta name="author" content="William Waites"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -69,13 +69,151 @@ for the JavaScript code in this tag.
 <div id="content">
 <h1 class="title">UCRN is Persistent and is not Anonymous</h1>
 
-<p><a href="../02/popreg.pdf">response to the Population Register consultation</a>
+<p>While writing my <a href="../02/popreg.pdf">response</a> to the <a href="http://www.gov.scot/Publications/2014/12/5990">Population Register consultation</a>, I
+came across two bizarre assertions. The first is in the consultation
+itself: 
+</p>
+<blockquote>
+
+<p>The UCRN is an anonymous number created by the NRS for each
+individual on behalf of whom information is contained in the NHSCR.
+</p>
+</blockquote>
+
+
+<p>
+What on earth is this supposed to mean? The UCRN is
+a <i>unique</i> <i>number</i> used to <i>refer</i> to a <i>citizen</i> contained in the
+NHSCR database. Its purpose is to be a numeric <i>name</i> an individual.
+In what sense is that anonymous?
+</p>
+<p>
+It turns out that what they mean is explained in the next sentence:
+</p>
+<blockquote>
+
+<p>The number contains no personal or identifiable information.
+</p>
+</blockquote>
+
+
+<p>
+Ok, so the number itself isn't made from your birthdate or anything
+like that. But this doesn't matter because <b>it</b> is identifial
+information by definition.
+</p>
+<p>
+There is nonsense of a similar kind in a related document, the 
+<a href="http://www.gov.scot/Topics/Economy/digital/digitalservices/Sign-intoOnlineServices/myaccountPolicyPIA">Privacy Impact Assessment</a> for the "myaccount" service. This is
+meant to be a single-sign-on service for interaction with any part of
+the Scottish Government and uses the UCRN as the <i>primary key</i> to
+match records from different databases. Supporting this service is
+the main motivation for the information sharing that the consultation
+is about.
+</p>
+<blockquote>
+
+<p>The UCRN&hellip; is not used as a Persistent Identifier. The UCRN will
+only be used to match at a high level with a service provider's
+records.
+</p>
+</blockquote>
+
+
+<p>
+Hopefully it's clear at least that the UCRN is in no way anonymous,
+so it is an identifier. What does "persistent" mean? Persistent
+information is information that sticks around. If you turn your
+computer off and then on again, whatever you have saved to disk is
+still there. It is persistent.
+</p>
+<p>
+If this information is used to match against service provider's
+records, the service provider needs to maintain a table of (internal
+identifier, UCRN) pairs. It's hard to believe that this table is not
+saved. The service would be useless if it were <i>not</i> saved. So it is
+persistent. 
+</p>
+<p>
+As far as I can tell, the authors of the consultation and the privacy
+assessment are attempting to redefine the well known words
+"anonymous" and "persistent" to mean their exact opposites.
+</p>
+<p>
+Before moving on to the next bit of silliness, here is a truly
+anonymous number for you:
+</p>
+
+
+<div id="anumber" style="width: 100%; text-align: center;"></div>
+<script language="javascript">
+  var randomnumber=Math.floor(Math.random()*10000000);
+  document.getElementById("anumber").innerText = randomnumber;
+</script>
+
+<p>
+The same privacy assessment also contains this statement:
+</p>
+
+
+<blockquote>
+<p style="margin-left: 50px;">
+4. Measures taken against individuals as a result of collecting
+   information about them might be seen as intrusive.
+</p>
+<p>
+The only information held in myaccount will be given to the
+individual for this purpose. The information does not include any
+information about service use.
+</p>
+</blockquote>
+
+<p>
+I have quite a lot of trouble believing this. The "myaccount" service
+is meant to be a trusted authentication source. It receives requests
+to authenticate users from various places. The history of these
+requests paints a picture of the interaction of a user with various
+services. Each time they log in, they leave a footprint that says
+they accessed a particular service.
+</p>
+<p>
+If this information is not stored that means there is no logging being
+done &ndash; hardly good news for trustworthiness because this would make
+it impossible to know anything about how the system is or isn't
+functioning. The only way that this statement can plausibly be true is
+if it is interpreted to mean that the logs are not held <i>in</i>
+myaccount but are held elsewhere by the operator of the myaccount
+service.
+</p>
+<p>
+Given that the operator of the myaccount service will then have a
+history of each individual's interaction with online government
+services, it is natural to consider this as a kind of
+surveillance. Surveillance means to watch from above and (usually) to
+record. As the operator of myaccount must do if it purports to be
+trustworthy.  This is a new service, so the surveillance method is
+new. And yet the privacy assessment dismisses this out of hand,
+</p>
+
+
+<blockquote>
+<p style="margin-left: 50px;">
+3. New surveillance methods may be an unjustified intrusion on
+individuals' privacy.
+</p>
+<p>
+Not applicable.
+</p>
+</blockquote>
+
+<p>
+Hardly.
 </p>
 
 </div>
 
 <div id="postamble">
-<p class="creator">Generated by <a href="http://orgmode.org">Org</a> version 7.9.3f with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 24 by <a href="mailto:tardis.ed.ac.uk!wwaites">tardis.ed.ac.uk!wwaites</a> at 2015-03-01T13:51+0000</p>
+<p class="creator">Generated by <a href="http://orgmode.org">Org</a> version 7.9.3f with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 24 by <a href="mailto:tardis.ed.ac.uk!wwaites">tardis.ed.ac.uk!wwaites</a> at 2015-03-01T14:53+0000</p>
 </div>
 </body>
 </html>

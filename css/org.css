@@ -962,6 +962,17 @@ content: "*** "
     pre.src {
 	background-color: #846454;
     }
+
+    blockquote {
+	font-style: italic;
+	background-color: #eeeeee;
+	border-left: 5px solid #c3c3c3;
+	pading-top: 10px;
+	padding-bottom: 5px;
+	padding-left: 5px;
+	border-top: 1px dotted #c3c3c3;
+	border-bottom: 1px dotted #c3c3c3;
+    }
 } /* END OF @media all */
 
 

@@ -1,0 +1,68 @@
+% Insipired by Cameron Bracken's theme originally posted
+% here: http://cameron.bracken.bz/beamer-template
+% January 2009
+
+% Modifications done by Martin Bjeldbak Madsen 
+% June 2014
+\mode<presentation>
+
+\RequirePackage{tgpagella}
+\RequirePackage{graphicx}
+
+\useoutertheme[subsection=false,shadow]{miniframes}
+\useinnertheme{default}
+\usefonttheme{serif}
+\usecolortheme{edinburgh}
+
+\defbeamertemplate{institute logo}{institute logo}[1][]{}
+\def\insertinstitutelogo{\usebeamertemplate*{institute logo}}
+\newcommand{\institutelogo}[1]{\setbeamertemplate{institute logo}{#1}}
+\setbeamertemplate{sidebar right}{}
+\institutelogo{\includegraphics[height=0.05\paperheight]{school_of_informatics}}
+
+\defbeamertemplate{project logo}{project logo}[1][]{}
+\def\insertprojectlogo{\usebeamertemplate*{project logo}}
+\newcommand{\projectlogo}[1]{\setbeamertemplate{project logo}{#1}}
+\projectlogo{\includegraphics[height=0.07\paperheight]{eushield-fullcolour}}
+
+\def\lfcs{%
+  \institute{Laboratory for Foundations of Computer Science}%
+  \institutelogo{\includegraphics[height=0.06\paperheight]{logo_lfcs}}%
+}
+
+\setbeamertemplate{footline}{%
+  \hspace{0.02\paperwidth}%
+  \insertinstitutelogo%
+  \hfill%
+  \insertprojectlogo%
+  \hspace{0.02\paperwidth}%
+  \vspace{0.02\paperheight}%
+}
+
+% Display a slide before the current section with overview inf
+\def\overview{\AtBeginSection[]{%
+   \begin{frame}
+       \frametitle{Overview}
+       \tableofcontents[currentsection,hideothersubsections]
+   \end{frame}
+  }
+}
+
+\setbeamerfont{title like}{shape=\scshape}
+\setbeamerfont{frametitle}{shape=\scshape}
+\setbeamerfont{section in head/foot}{shape=\scshape,size=\tiny}
+
+\setbeamertemplate{navigation symbols}{} % hide bottom nav buttons
+\setbeamercovered{transparent} % don't hide strip-teased bullet points
+
+%\setbeamercolor{lower separation line head}{bg=UOEblue} 
+%\setbeamercolor{lower separation line foot}{bg=UOEblue} 
+\setbeamercolor{normal text}{fg=black,bg=white} 
+\setbeamercolor{alerted text}{fg=red} 
+\setbeamercolor{example text}{fg=black} 
+\setbeamercolor{structure}{fg=black} 
+ 
+\setbeamercolor{palette tertiary}{fg=black,bg=black!10} 
+\setbeamercolor{palette quaternary}{fg=black,bg=black!10} 
+
+\mode<all>

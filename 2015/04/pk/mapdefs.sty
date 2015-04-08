@@ -1,0 +1,35 @@
+\ProvidesPackage{mapdefs}
+\RequirePackage{tikz}
+
+\def\europe{%
+  \node at (5, -0.5) {%
+    \includegraphics[height=0.7\paperheight]{europe.jpg}%
+  };%
+}
+
+\def\scotland{%
+  \node[circle, draw, minimum height=0.7cm] (scotland) at (3,0.8) {};%
+  \begin{scope}
+    \clip (8, 2) circle (2cm);
+    \node at (8, 2) {\includegraphics[height=4cm]{scotland.jpg}};
+  \end{scope}
+  \node[circle, minimum height=4cm] (scotmap) at (8, 2) {};%
+  \draw (scotland.north) edge (scotmap.north west);
+  \draw (scotland.south) edge (scotmap.south);
+}
+
+\def\wcn{
+  \node[circle, minimum height=0.6cm, draw, color=yellow] (lochalsh) at (7.3,1.9) {};
+  \node[circle, minimum height=4.4cm] (wcn) at (5.5,-2.5) {};
+  \draw (lochalsh.north west) edge[color=yellow] (wcn.north west);
+  \draw (lochalsh.east) edge[color=yellow] (wcn.east);
+  \begin{scope}
+    \clip (5.5,-2.5) circle (2.2cm);
+    \node at (5.2, -1.5)
+          {\includegraphics[height=8cm]{west_coast_a4.jpg}};
+  \end{scope}
+}
+
+\def\arnisdale{
+  \node[circle, draw, color=red, thick, minimum size=0.5cm] at (7.5, -2.1) {};
+}

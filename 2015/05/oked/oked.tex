@@ -1,0 +1,203 @@
+\documentclass{beamer}
+\mode<presentation>
+\usetheme{inf}
+\usepackage[math]{kurier}
+\usepackage{fmtcount}
+\usepackage{tikz}
+\usepackage[europeanresistors]{circuitikz}
+\usetikzlibrary{shapes,arrows}
+\usepackage{mapdefs}
+\usepackage{xmission}
+\definecolor{hubsblue}{RGB}{2,72,142}
+\definecolor{bcsgreen}{RGB}{0,105,65}
+
+\begin{document}
+\title{Collaborative Infrastructure Development}
+\author{William Waites\\\url{ww@ecn.scot}}
+%\lfcs
+\institute{
+      Edinburgh Community Network\\
+      {\color{hubsblue}\url{https://ecn.scot/}}
+  \and
+  \&\hspace{5pt}%
+  \begin{minipage}{0.3\textwidth}
+    \begin{center}
+      School of Informatics\\University of Edinburgh
+    \end{center}
+  \end{minipage}
+}
+\projectlogo{\includegraphics[height=0.07\paperheight]{ecn-logo}}
+
+\setbeamertemplate{headline}{}
+
+\date[OKED]{\#OpenDataEDB -- 14th May 2015}
+{
+    \begin{frame}
+      \titlepage
+    \end{frame}
+}
+%\begin{frame}
+%  \begin{tikzpicture}[overlay]
+%    \node at (5.5, -0.5) {%
+%      \includegraphics[width=1.05\paperwidth]{Cview.jpg}%
+%    };%
+%    \node (arnisdale) at (10,-2) {\Large \color{hubsblue} Arnisdale};
+%    \node (corran) at (9,0) {\Large \color{hubsblue} Corran};
+%    \draw[arrows=-triangle 45, color=hubsblue] (arnisdale) to (6.75,-2.75);
+%    \draw[arrows=-triangle 45, color=hubsblue] (corran) to (5,0.75);
+%  \end{tikzpicture}
+%\end{frame}
+\begin{frame}
+  \begin{tikzpicture}[overlay]
+    \node at (5.5, -0.5) {%
+      \includegraphics[width=1.1\paperwidth]{starting.jpg}
+    };
+    \end{tikzpicture}
+\end{frame}
+\begin{frame}
+  \begin{tikzpicture}[overlay]
+    \node at (5.5, -0.5) {%
+      \includegraphics[height=1.1\paperheight]{glas_bheinn}
+    };
+  \end{tikzpicture}
+\end{frame}
+%\begin{frame}
+%  \begin{tikzpicture}[overlay]
+%    \node at (5.5, -0.5) {%
+%      \includegraphics[width=1.1\paperwidth,angle=270]{melness}
+%    };
+%  \end{tikzpicture}
+%\end{frame}
+%\begin{frame}
+%  \begin{tikzpicture}[overlay]
+%    \node at (5.5, -0.5) {%
+%       \includegraphics[width=1.05\paperwidth]{stick.jpg}
+%    };
+%    \end{tikzpicture}
+%\end{frame}
+%\begin{frame}
+%  \begin{tikzpicture}[overlay]
+%    \node at (5.5, -0.5) {%
+%      \includegraphics[height=1.1\paperheight]{GLB_viewshed}
+%    };
+%  \end{tikzpicture}
+%\end{frame}
+%\begin{frame}
+%  \begin{tikzpicture}[overlay]
+%    \node at (5.5, -0.5) {%
+%      \includegraphics[width=1.07\paperwidth]{junkpile.jpg}
+%    };
+%    \end{tikzpicture}
+%\end{frame}
+\begin{frame}
+  \begin{tikzpicture}[overlay]
+    \node at (5.5, -0.5) {%
+      \includegraphics[width=1.07\paperwidth]{corran-testing.jpg}
+    };
+    \end{tikzpicture}
+\end{frame}
+\begin{frame}
+  \begin{tikzpicture}[overlay]
+    \node at (5.5, -0.5) {%
+      \includegraphics[height=1.1\paperheight]{inver-mast.jpg}
+    };
+    \end{tikzpicture}
+\end{frame}
+%\begin{frame}
+%  \begin{tikzpicture}[overlay]
+%    \node at (5.5, -0.5) {%
+%      \includegraphics[width=1.1\paperwidth]{creagan-dearga-mast.jpg}
+%    };
+%  \end{tikzpicture}
+%\end{frame}
+\begin{frame}
+  \begin{tikzpicture}[overlay]
+    \node at (5.5, -0.5) {%
+      \includegraphics[width=1.07\paperwidth]{mhialairigh-from-behind.jpg}
+    };
+    \end{tikzpicture}
+\end{frame}
+%\begin{frame}
+%  \begin{tikzpicture}[overlay]
+%    \node at (5, 1) {%
+%      \includegraphics[width=1.05\paperwidth]{west_coast_a4.jpg}
+%    };
+%  \end{tikzpicture}
+%\end{frame}
+\begin{frame}
+  \begin{tikzpicture}[overlay]
+    \node at (5.5, -0.5) {%
+      \includegraphics[width=0.8\paperwidth]{west-coast-detail}
+    };
+  \end{tikzpicture}
+\end{frame}
+%\begin{frame}
+%  \begin{tikzpicture}[overlay]
+%    \node at (5.5, -0.5) {%
+%      \includegraphics[width=0.7\paperwidth]{EIG_RAN.png}
+%    };
+%  \end{tikzpicture}
+%\end{frame}
+%\begin{frame}
+%  \begin{tikzpicture}[overlay]
+%    \node at (5.5, -0.5) {%
+%      \includegraphics[height=1.1\paperheight]{cow_hazard}
+%    };
+%  \end{tikzpicture}
+%\end{frame}
+%\begin{frame}
+%  \begin{tikzpicture}[overlay]
+%    \node at (5.5, -0.5) {%
+%      \includegraphics[width=1.1\paperwidth]{portree-3d.png}
+%    };
+%  \end{tikzpicture}
+%\end{frame}
+\begin{frame}
+  \begin{tikzpicture}[overlay]
+    \node at (5.5, -0.5) {%
+      \includegraphics[width=0.8\paperwidth]{hubs-mar2015.png}
+    };
+  \end{tikzpicture}
+\end{frame}
+\begin{frame}
+  \begin{tikzpicture}[overlay]
+    \node at (5.5, -0.5) {%
+      \includegraphics[height=1.1\paperheight]{tc_south}
+    };
+  \end{tikzpicture}
+\end{frame}
+\begin{frame}
+  \begin{tikzpicture}[overlay]
+    \node at (5.5, -0.5) {%
+      \includegraphics[width=1.1\paperwidth]{forum-roof}
+    };
+  \end{tikzpicture}
+\end{frame}
+\begin{frame}
+  \begin{tikzpicture}[overlay]
+    \node at (6, -0.5) {%
+      \includegraphics[height=1.1\paperheight]{tc-viewshed}
+    };
+  \end{tikzpicture}
+\end{frame}
+\begin{frame}
+  \begin{tikzpicture}[overlay]
+    \node at (8, -2) {%
+      \includegraphics[height=1.1\paperheight]{hubs-south-sheds}
+    };
+  \end{tikzpicture}
+\end{frame}
+\begin{frame}
+  \begin{center}
+    \begin{tikzpicture}[overlay]
+      \node at (3, -0.5) {%
+        \includegraphics[height=1.1\paperheight]{at_laser}
+      };%
+      \node at (4,3) {\Huge \color{bcsgreen} Thank you};
+      \node at (-2,3) {\Large \color{bcsgreen}\url{https://ecn.scot/}};
+      \node at (-2,2.5) {\Large \color{bcsgreen}\url{https://hubs.net.uk/}};
+    \end{tikzpicture}
+  \end{center}
+\end{frame}    
+
+\end{document}
